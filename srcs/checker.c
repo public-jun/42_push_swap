@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 21:38:58 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/16 16:58:53 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/16 23:23:22 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,57 +24,85 @@ t_num_list_node *free_one_node(t_num_list_node *node)
 	return (tmp_prev->next);
 }
 
-void	ft_exit(t_stack_group *stack_group)
+t_instr_list_node	*free_one_instr_node(t_instr_list_node *node)
 {
-	t_num_list_node *tmp;
+	t_instr_list_node *tmp_prev;
 
-	tmp = stack_group->head_a->next;
-	while (tmp != stack_group->head_a)
+	tmp_prev = node->prev;
+	node->next->prev = tmp_prev;
+	tmp_prev->next = node->next;
+	free(node->instr);
+	node->instr = NULL;
+	free(node);
+	node = NULL;
+	return (tmp_prev->next);
+}
+
+void	ft_exit(t_list_group *list_group)
+{
+	t_num_list_node		*tmp;
+	t_instr_list_node	*tmp_instr;
+
+	tmp = list_group->stack_a->next;
+	while (tmp != list_group->stack_a)
 		tmp = free_one_node(tmp);
-	free(stack_group->head_a);
-	stack_group->head_a = NULL;
-	tmp = stack_group->head_b->next;
-	while (tmp != stack_group->head_b)
+	free(list_group->stack_a);
+	list_group->stack_a = NULL;
+	tmp = list_group->stack_b->next;
+	while (tmp != list_group->stack_b)
 		tmp = free_one_node(tmp);
-	free(stack_group->head_b);
-	stack_group->head_b = NULL;
+	free(list_group->stack_b);
+	list_group->stack_b = NULL;
+	tmp_instr = list_group->head_instr->next;
+	while (tmp_instr != list_group->head_instr)
+		tmp_instr = free_one_instr_node(tmp_instr);
+	free(list_group->head_instr->instr);
+	free(list_group->head_instr);
 	exit(0);
 }
 
-void	ft_put_error_and_exit(t_stack_group *stack_group)
+void	ft_put_error_and_exit(t_list_group *list_group)
 {
 	write(2, "Error\n", 6);
-	ft_exit(stack_group);
+	ft_exit(list_group);
 }
 
-t_num_list_node *make_new_ele(t_stack_group *stack_group, int value)
+t_num_list_node *make_new_ele(t_list_group *list_group, int value)
 {
 	t_num_list_node *res;
 
 	res = (t_num_list_node*)malloc(sizeof(t_num_list_node));
 	if (!res)
-		ft_put_error_and_exit(stack_group);
+		ft_put_error_and_exit(list_group);
 	res->num = value;
 	return (res);
 }
 
-void	init_list(t_stack_group *stack_group)
+void	init_instr_list(t_list_group *list_group)
 {
-	stack_group->head_a = make_new_ele(stack_group, 0);
-	stack_group->head_b = make_new_ele(stack_group, 0);
-	stack_group->head_a->prev = stack_group->head_a;
-	stack_group->head_a->next = stack_group->head_a;
-	stack_group->head_b->prev = stack_group->head_b;
-	stack_group->head_b->next = stack_group->head_b;
+	list_group->head_instr = make_new_instr_node(list_group, NULL);
+	list_group->head_instr->prev = list_group->head_instr;
+	list_group->head_instr->next = list_group->head_instr;
 }
 
-int	get_valid_num(char *value, t_stack_group *stack_group)
+void	init_list(t_list_group *list_group)
+{
+	list_group->stack_a = make_new_ele(list_group, 0);
+	list_group->stack_b = make_new_ele(list_group, 0);
+	list_group->stack_a->prev = list_group->stack_a;
+	list_group->stack_a->next = list_group->stack_a;
+	list_group->stack_b->prev = list_group->stack_b;
+	list_group->stack_b->next = list_group->stack_b;
+	init_instr_list(list_group);
+}
+
+int	get_valid_num(char *value, t_list_group *list_group)
 {
 	int		int_value;
 
 	if (ft_is_all_num(value) == -1)
-		ft_put_error_and_exit(stack_group);
-	int_value = ft_atoi_ps(value, stack_group);
+		ft_put_error_and_exit(list_group);
+	int_value = ft_atoi_ps(value, list_group);
 	return (int_value);
 }
 
@@ -97,22 +125,22 @@ t_num_list_node	*get_tail_node(int value, t_num_list_node *stack_a)
 			return (NULL);
 		tmp = tmp->next;
 	}
-	return tmp;
+	return (tmp);
 }
 
-void	add_node_to_stack(int value, t_stack_group *stack_group)
+void	add_node_to_stack(int value, t_list_group *list_group)
 {
 	t_num_list_node	*tail_node;
 	t_num_list_node	*new_node;
 
-	tail_node = get_tail_node(value, stack_group->head_a);
+	tail_node = get_tail_node(value, list_group->stack_a);
 	if (!tail_node)
-		ft_put_error_and_exit(stack_group);
-	new_node = make_new_ele(stack_group, value);
-	new_node->next = stack_group->head_a;
+		ft_put_error_and_exit(list_group);
+	new_node = make_new_ele(list_group, value);
+	new_node->next = list_group->stack_a;
 	new_node->prev = tail_node;
 	tail_node->next = new_node;
-	stack_group->head_a->prev = new_node;
+	list_group->stack_a->prev = new_node;
 }
 
 int	main(int ac, char **av)
@@ -120,20 +148,20 @@ int	main(int ac, char **av)
 	int		i;
 	int		value;
 
-	t_stack_group	stack_group;
-	init_list(&stack_group);
+	t_list_group	list_group;
+	init_list(&list_group);
 	i = 1;
 	if (ac == 1)
-		ft_exit(&stack_group);
+		ft_exit(&list_group);
 	while (i < ac)
 	{
-		value = get_valid_num(av[i], &stack_group);
-		add_node_to_stack(value, &stack_group);
+		value = get_valid_num(av[i], &list_group);
+		add_node_to_stack(value, &list_group);
 		i++;
 	}
 	//test print stack_a
-	// t_num_list_node *tmp = stack_group.head_a;
-	// while (tmp->next != stack_group.head_a)
+	// t_num_list_node *tmp = list_group.stack_a;
+	// while (tmp->next != list_group.stack_a)
 	// {
 	// 	printf("%d\n", tmp->next->num);
 	// 	tmp = tmp->next;
@@ -141,7 +169,15 @@ int	main(int ac, char **av)
 	// printf("stack_a num	: %d\n", tmp->next->num);
 
 	//標準入力で命令を受け取る
-	
-	ft_exit(&stack_group);
+	read_instruction_stdin(&list_group);
+	// test print instr_list
+	t_instr_list_node *instr_tmp = list_group.head_instr;
+	while (instr_tmp->next != list_group.head_instr)
+	{
+		printf("%s\n", instr_tmp->next->instr);
+		instr_tmp = instr_tmp->next;
+	}
+	printf("head_instr	: %s\n", instr_tmp->next->instr);
+	ft_exit(&list_group);
 	return (0);
 }

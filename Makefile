@@ -8,7 +8,11 @@ LIBFT_DIR = ./libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 
 SRCS_CH := srcs/checker.c \
-			srcs/utils.c
+			srcs/utils.c \
+			srcs/get_next_line.c \
+			srcs/get_next_line_utils.c \
+			srcs/read_instruction.c
+
 # SRCS_PS :=
 
 OBJCS_CH := $(SRCS_CH:%.c=%.o)

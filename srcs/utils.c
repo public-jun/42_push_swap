@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 13:29:24 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/16 16:33:32 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/16 18:27:06 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	check_int_overflow(int sign, const char *str)
 	return (1);
 }
 
-int	ft_atoi_ps(const char *str, t_stack_group *stack_group)
+int	ft_atoi_ps(const char *str, t_list_group *list_group)
 {
 	long long		number;
 	int				sign;
@@ -63,7 +63,7 @@ int	ft_atoi_ps(const char *str, t_stack_group *stack_group)
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	if (check_int_overflow(sign, str + i) == -1)
-		ft_put_error_and_exit(stack_group);
+		ft_put_error_and_exit(list_group);
 	while (ft_isdigit(str[i]))
 	{
 		number = number * 10;
