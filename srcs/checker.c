@@ -6,11 +6,12 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 21:38:58 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/16 23:23:22 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/17 01:50:26 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
+#include "../includes/common.h"
 
 t_num_list_node *free_one_node(t_num_list_node *node)
 {
@@ -171,13 +172,26 @@ int	main(int ac, char **av)
 	//標準入力で命令を受け取る
 	read_instruction_stdin(&list_group);
 	// test print instr_list
-	t_instr_list_node *instr_tmp = list_group.head_instr;
-	while (instr_tmp->next != list_group.head_instr)
+	// t_instr_list_node *instr_tmp = list_group.head_instr;
+	// while (instr_tmp->next != list_group.head_instr)
+	// {
+	// 	printf("%s\n", instr_tmp->next->instr);
+	// 	instr_tmp = instr_tmp->next;
+	// }
+	// printf("head_instr	: %s\n", instr_tmp->next->instr);
+
+	//受け取った命令を実行する
+	exec_instruction(&list_group);
+	// test print stack_a
+	t_num_list_node *tmp = list_group.stack_a;
+	printf("\n---result-----\n");
+	while (tmp->next != list_group.stack_a)
 	{
-		printf("%s\n", instr_tmp->next->instr);
-		instr_tmp = instr_tmp->next;
+		printf("%d\n", tmp->next->num);
+		tmp = tmp->next;
 	}
-	printf("head_instr	: %s\n", instr_tmp->next->instr);
+	printf("stack_a num	: %d\n", tmp->next->num);
+
 	ft_exit(&list_group);
 	return (0);
 }

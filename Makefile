@@ -11,7 +11,8 @@ SRCS_CH := srcs/checker.c \
 			srcs/utils.c \
 			srcs/get_next_line.c \
 			srcs/get_next_line_utils.c \
-			srcs/read_instruction.c
+			srcs/read_instruction.c \
+			srcs/common.c
 
 # SRCS_PS :=
 
