@@ -1,28 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/14 22:02:30 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/17 16:22:36 by jnakahod         ###   ########.fr       */
+/*   Created: 2021/04/17 15:53:18 by jnakahod          #+#    #+#             */
+/*   Updated: 2021/04/17 15:54:00 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
-
-#include <unistd.h>
-#include <stdlib.h>
-#include <limits.h>
-#include "struct.h"
-#include "../libft/libft.h"
-#include "../includes/get_next_line.h"
-//printf
-#include <stdio.h>
-
-
-void	read_instruction_stdin(t_list_group *list_group);
-void	check_list_order(t_list_group *list_group);
-#endif
+#

@@ -6,12 +6,12 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 14:37:56 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/17 15:19:29 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/17 16:23:00 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
-#include "../includes/struct.h"
+#include "../includes/common.h"
 
 void	ft_put_KO_and_exit(t_list_group *list_group)
 {
