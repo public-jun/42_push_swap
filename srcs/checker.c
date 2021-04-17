@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 21:38:58 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/17 01:50:26 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/17 15:20:27 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,16 @@ int	main(int ac, char **av)
 	//受け取った命令を実行する
 	exec_instruction(&list_group);
 	// test print stack_a
+	// t_num_list_node *tmp = list_group.stack_a;
+	// printf("\n---result-----\n");
+	// while (tmp->next != list_group.stack_a)
+	// {
+	// 	printf("%d\n", tmp->next->num);
+	// 	tmp = tmp->next;
+	// }
+	// printf("stack_a num	: %d\n", tmp->next->num);
+
+	check_list_order(&list_group);
 	t_num_list_node *tmp = list_group.stack_a;
 	printf("\n---result-----\n");
 	while (tmp->next != list_group.stack_a)
@@ -191,7 +201,5 @@ int	main(int ac, char **av)
 		tmp = tmp->next;
 	}
 	printf("stack_a num	: %d\n", tmp->next->num);
-
-	ft_exit(&list_group);
 	return (0);
 }

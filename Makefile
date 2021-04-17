@@ -12,7 +12,9 @@ SRCS_CH := srcs/checker.c \
 			srcs/get_next_line.c \
 			srcs/get_next_line_utils.c \
 			srcs/read_instruction.c \
-			srcs/common.c
+			srcs/common.c \
+			srcs/check_correct_order.c
+
 
 # SRCS_PS :=
 
