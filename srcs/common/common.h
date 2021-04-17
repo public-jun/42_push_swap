@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 00:37:40 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/17 16:36:10 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/17 18:05:19 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <limits.h>
 #include "struct.h"
-#include "../libft/libft.h"
+#include "../../libft/libft.h"
 
 #include <stdio.h>
 

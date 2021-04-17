@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 22:02:30 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/17 16:22:36 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/17 18:13:11 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "struct.h"
 #include "../libft/libft.h"
 #include "../includes/get_next_line.h"
+#include "../srcs/common/common.h"
 //printf
 #include <stdio.h>
 

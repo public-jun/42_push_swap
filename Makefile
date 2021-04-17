@@ -7,15 +7,14 @@ CFLAGS := -Wall -Wextra -Werror
 LIBFT_DIR = ./libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 
+COMMON_DIR = ./srcs/common
+COMMON_LIB = $(COMMON_DIR)/libcommon.a
+
 SRCS_CH := srcs/checker.c \
 			srcs/utils.c \
 			srcs/get_next_line.c \
 			srcs/get_next_line_utils.c \
 			srcs/read_instruction.c \
-			srcs/common.c \
-			srcs/exit.c \
-			srcs/add_node.c \
-			srcs/init_list.c \
 			srcs/check_correct_order.c
 
 
@@ -32,11 +31,14 @@ RM := rm -f
 all: $(NAME_CH)
 
 
-$(NAME_CH): $(OBJCS_CH) $(LIBFT_LIB)
-	$(CC) $(CFLAGS) $(OBJCS_CH) $(LIBFT_LIB) -I $(INCLUDE) -o $(NAME_CH)
+$(NAME_CH): $(OBJCS_CH) $(LIBFT_LIB) $(COMMON_LIB)
+	$(CC) $(CFLAGS) $(OBJCS_CH) $(LIBFT_LIB) $(COMMON_LIB) -I $(INCLUDE) -o $(NAME_CH)
 
 $(LIBFT_LIB): $(LIBFT_DIR)
 	$(MAKE) -C $(LIBFT_DIR) bonus
+
+$(COMMON_LIB): $(COMMON_DIR)
+	$(MAKE) -C $(COMMON_DIR)
 
 # $(NAME_PS): $(OBJCS_PS)
 # 	$(CC) $(CFLAGS) $(OBJCS_PS) $(LIBFT_LIB) -I $(INCLUDE) -o $(NAME_CH)
