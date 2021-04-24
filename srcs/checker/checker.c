@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 21:38:58 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/24 15:29:39 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/24 16:09:25 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	main(int ac, char **av)
 {
-	int		i;
-	int		value;
-
+	int				i;
+	int				value;
 	t_list_group	list_group;
+
 	init_list(&list_group);
 	i = 1;
 	if (ac == 1)

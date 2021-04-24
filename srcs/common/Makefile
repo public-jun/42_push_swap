@@ -4,6 +4,7 @@ SRCS := add_node.c \
 		common.c \
 		exit.c \
 		init_list.c \
+		utils.c
 
 OBJCS := $(SRCS:%.c=%.o)
 

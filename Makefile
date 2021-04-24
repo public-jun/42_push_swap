@@ -13,7 +13,6 @@ COMMON_LIB = $(COMMON_DIR)/libcommon.a
 CH_DIR := ./srcs/checker
 
 SRCS_CH := $(CH_DIR)/checker.c \
-			$(CH_DIR)/utils.c \
 			$(CH_DIR)/get_next_line.c \
 			$(CH_DIR)/get_next_line_utils.c \
 			$(CH_DIR)/read_instruction.c \
