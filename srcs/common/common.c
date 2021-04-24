@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 00:36:07 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/17 18:11:35 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/23 14:39:09 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	exec_swap(t_num_list_node *stack)
 
 	first->next = second->next;
 	first->prev = second;
+	second->next->prev = first;
 	second->next = first;
 	second->prev = stack;
 	stack->next = second;

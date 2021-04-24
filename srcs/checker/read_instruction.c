@@ -6,11 +6,11 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 18:29:44 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/17 17:41:00 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/24 15:29:58 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../../includes/checker.h"
 
 t_instr_list_node	*make_new_instr_node(t_list_group *list_group, char *instr)
 {

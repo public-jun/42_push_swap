@@ -1,13 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/17 15:53:18 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/17 15:54:00 by jnakahod         ###   ########.fr       */
+/*   Created: 2020/11/04 10:52:35 by jnakahod          #+#    #+#             */
+/*   Updated: 2021/04/24 15:29:45 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#
+#include "../../includes/checker.h"
+
+size_t			ft_strchr_ex(char *s, int c)
+{
+	size_t		i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return (i + 1);
+		i++;
+	}
+	return (0);
+}

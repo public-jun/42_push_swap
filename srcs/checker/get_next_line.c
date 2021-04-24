@@ -6,11 +6,11 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:52:22 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/16 17:21:56 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/24 15:29:51 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../../includes/checker.h"
 
 static char			*make_join(size_t len_s1, size_t len_s2,
 							char const *s1, char const *s2)

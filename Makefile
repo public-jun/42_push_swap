@@ -10,12 +10,14 @@ LIBFT_LIB = $(LIBFT_DIR)/libft.a
 COMMON_DIR = ./srcs/common
 COMMON_LIB = $(COMMON_DIR)/libcommon.a
 
-SRCS_CH := srcs/checker.c \
-			srcs/utils.c \
-			srcs/get_next_line.c \
-			srcs/get_next_line_utils.c \
-			srcs/read_instruction.c \
-			srcs/check_correct_order.c
+CH_DIR := ./srcs/checker
+
+SRCS_CH := $(CH_DIR)/checker.c \
+			$(CH_DIR)/utils.c \
+			$(CH_DIR)/get_next_line.c \
+			$(CH_DIR)/get_next_line_utils.c \
+			$(CH_DIR)/read_instruction.c \
+			$(CH_DIR)/check_correct_order.c
 
 
 # SRCS_PS :=
@@ -46,16 +48,18 @@ $(COMMON_LIB): $(COMMON_DIR)
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(COMMON_DIR) clean
 	$(RM) $(OBJCS_CH)
 
 fclean:clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(COMMON_DIR) fclean
 	$(RM) $(NAME_CH)
 
-re:fclean all
+re: fclean all
 
 testch:
-	$(CC) -g $(CFLAGS) $(SRCS_CH) $(LIBFT_LIB) -I $(INCLUDE) -o $(NAME_CH)
+	$(CC) -g $(CFLAGS) $(SRCS_CH) $(COMMON_DIR)/*.c $(LIBFT_LIB) -I $(INCLUDE) -I $(COMMON_DIR)/common.h -o $(NAME_CH)
 
 # testps:
 # 	$(CC) -g $(CFLAGS) $(SRCS_PS) $(LIBFT_LIB) -I $(INCLUDE) -o $(NAME_CH)

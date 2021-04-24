@@ -6,11 +6,11 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 13:29:24 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/17 17:41:02 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/24 15:29:19 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../../includes/checker.h"
 
 int			ft_is_all_num(char *num)
 {

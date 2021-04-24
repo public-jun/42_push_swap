@@ -6,11 +6,11 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 21:38:58 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/17 18:13:31 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/24 15:29:39 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../../includes/checker.h"
 
 int	main(int ac, char **av)
 {
