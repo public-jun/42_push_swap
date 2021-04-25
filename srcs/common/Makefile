@@ -1,6 +1,7 @@
 NAME := libcommon.a
 
 SRCS := add_node.c \
+		add_instr_node.c \
 		common.c \
 		exit.c \
 		init_list.c \
