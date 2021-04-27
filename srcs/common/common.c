@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 00:36:07 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/23 14:39:09 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/27 15:52:06 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "common.h"
 
 //type s*
-void	exec_swap(t_num_list_node *stack)
+void	exec_s(t_num_list_node *stack)
 {
 	t_num_list_node *first;
 	t_num_list_node *second;
@@ -31,7 +31,7 @@ void	exec_swap(t_num_list_node *stack)
 }
 
 //type r*
-void	exec_rotate(t_num_list_node *stack)
+void	exec_r(t_num_list_node *stack)
 {
 	t_num_list_node	*first;
 
@@ -45,7 +45,7 @@ void	exec_rotate(t_num_list_node *stack)
 }
 
 //type rr*
-void	exec_reverse_rotate(t_num_list_node *stack)
+void	exec_rr(t_num_list_node *stack)
 {
 	t_num_list_node	*last;
 
@@ -59,7 +59,7 @@ void	exec_reverse_rotate(t_num_list_node *stack)
 }
 
 //type p*
-void	exec_push(t_num_list_node *from, t_num_list_node *to)
+void	exec_p(t_num_list_node *from, t_num_list_node *to)
 {
 	t_num_list_node *tmp;
 
@@ -75,35 +75,35 @@ void	exec_push(t_num_list_node *from, t_num_list_node *to)
 void	conditional_branch_by_instr(char *instr, t_list_group *list_group)
 {
 	if (!(ft_strncmp(instr, "sa", 3)))
-		exec_swap(list_group->stack_a);
+		exec_s(list_group->stack_a);
 	else if (!(ft_strncmp(instr, "sb", 3)))
-		exec_swap(list_group->stack_b);
+		exec_s(list_group->stack_b);
 	else if (!(ft_strncmp(instr, "ss", 3)))
 	{
-		exec_swap(list_group->stack_a);
-		exec_swap(list_group->stack_b);
+		exec_s(list_group->stack_a);
+		exec_s(list_group->stack_b);
 	}
 	else if (!(ft_strncmp(instr, "pa", 3)))
-		exec_push(list_group->stack_b, list_group->stack_a);
+		exec_p(list_group->stack_b, list_group->stack_a);
 	else if (!(ft_strncmp(instr, "pb", 3)))
-		exec_push(list_group->stack_a, list_group->stack_b);
+		exec_p(list_group->stack_a, list_group->stack_b);
 	else if (!(ft_strncmp(instr, "ra", 3)))
-		exec_rotate(list_group->stack_a);
+		exec_r(list_group->stack_a);
 	else if (!(ft_strncmp(instr, "rb", 3)))
-		exec_rotate(list_group->stack_b);
+		exec_r(list_group->stack_b);
 	else if (!(ft_strncmp(instr, "rr", 3)))
 	{
-		exec_rotate(list_group->stack_a);
-		exec_rotate(list_group->stack_b);
+		exec_r(list_group->stack_a);
+		exec_r(list_group->stack_b);
 	}
 	else if (!(ft_strncmp(instr, "rra", 4)))
-		exec_reverse_rotate(list_group->stack_a);
+		exec_rr(list_group->stack_a);
 	else if (!(ft_strncmp(instr, "rrb", 4)))
-		exec_reverse_rotate(list_group->stack_b);
+		exec_rr(list_group->stack_b);
 	else if (!(ft_strncmp(instr, "rrr", 4)))
 	{
-		exec_reverse_rotate(list_group->stack_a);
-		exec_reverse_rotate(list_group->stack_b);
+		exec_rr(list_group->stack_a);
+		exec_rr(list_group->stack_b);
 	}
 }
 
