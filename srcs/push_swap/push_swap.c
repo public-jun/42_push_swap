@@ -38,58 +38,40 @@ void	sort_only_three(t_num_list_node *stack, t_list_group *list_group)
 	third = stack->next->next->next->num;
 	//2, 1, 3
 	if (first > second && second < third && first < third)
-	{
-		if (stack == list_group->stack_a)
-			exec_swap_rotate_and_add_instr_node(exec_swap, stack, "sa", list_group)
-		else
-			exec_swap_rotate_and_add_instr_node(exec_swap, stack, "sb", list_group)
-	}
+		sort_only_three_case1(stack, list_group);
 	//3, 2, 1
 	else if (first > second && second > third && first > third)
-	{
-		if (stack == list_group->stack_a)
-		{
-			exec_swap_rotate_and_add_instr_node(exec_swap, stack, "sa", list_group);
-			exec_swap_rotate_and_add_instr_node(exec_reverse_rotate, stack, "rra", list_group);
-		}
-		else
-		{
-			exec_swap_rotate_and_add_instr_node(exec_swap, stack, "sb", list_group);
-			exec_swap_rotate_and_add_instr_node(exec_reverse_rotate, stack, "rrb", list_group);
-		}
-	}
+		sort_only_three_case2(stack, list_group);
 	//3, 1, 2
 	else if (first > second && second < third && first > third)
-	{
-		if (stack == list_group->stack_a)
-			exec_swap_rotate_and_add_instr_node(exec_rotate, stack, "ra", list_group);
-		else
-			exec_swap_rotate_and_add_instr_node(exec_rotate, stack, "rb", list_group);
-	}
+		sort_only_three_case3(stack, list_group);
 	//1, 3, 2
 	else if (first < second && second > third && first < third)
-	{
-		if (stack == list_group->stack_a)
-		{
-			exec_swap_rotate_and_add_instr_node(exec_swap, stack, "sa", list_group);
-			exec_swap_rotate_and_add_instr_node(exec_rotate, stack, "ra", list_group);
-		}
-		else
-		{
-			exec_swap_rotate_and_add_instr_node(exec_swap, stack, "sb", list_group);
-			exec_swap_rotate_and_add_instr_node(exec_rotate, stack, "rb", list_group);
-		}
-	}
+		sort_only_three_case4(stack, list_group);
 	//2, 3, 1
 	else if (first < second && second > third && first > third)
-	{
-		if (stack == list_group->stack_a)
-			exec_swap_rotate_and_add_instr_node(exec_reverse_rotate, stack, "rra", list_group);
-		else
-			exec_swap_rotate_and_add_instr_node(exec_reverse_rotate, stack, "rrb", list_group);
-	}
+		sort_only_three_case5(stack, list_group);
 }
 
+int		count_size(t_num_list_node *stack)
+{
+	t_num_list_node *tmp;
+	int	res;
+
+	res = 0;
+	tmp = stack->next;
+	while (tmp != stack)
+	{
+		res++;
+		tmp = tmp->next;
+	}
+	return (res);
+}
+
+void	sort_more_four_less_six(t_num_list_node *stack, t_list_group *list_group)
+{
+	
+}
 
 void	sort_less6(t_list_group *list_group, int size)
 {
@@ -109,10 +91,7 @@ void	sort_less6(t_list_group *list_group, int size)
 	else if (size == 3)
 		sort_only_three(stack_a, list_group);
 	else if (size <= 5 )
-		while (size > 3)
-		{
-
-		}
+		sort_more_four_less_six(stack_a, list_group);
 }
 
 void	add_value_to_pair(t_info *info, int value, int i)
@@ -181,10 +160,10 @@ int	main(int ac, char **av)
 	// }
 	quick_sort(info.n, 0, info.n_size - 1, SORT_ID);
 	//引数が5以下
-	// if (ac - 1 < 6)
-	// 	sort_less6(&list_group, ac - 1);
-	// else
-	// 	sort_over5()
+	if (ac - 1 < 6)
+		sort_less6(&list_group, ac - 1);
+	else
+		sort_over5()
 	//引数が6個以上
 
 	// printf("after quick_sort_id\n");
