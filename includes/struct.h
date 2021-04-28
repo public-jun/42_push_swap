@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 22:02:22 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/25 15:04:21 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/27 14:18:17 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 typedef struct s_num_list_node
 {
 	int						num;
-	int						index;
 	struct s_num_list_node	*prev;
 	struct s_num_list_node	*next;
 }	t_num_list_node;
