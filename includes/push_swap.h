@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 15:53:35 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/27 16:57:20 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:08:27 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ void	sort_only_three_case4(t_num_list_node *stack, t_list_group *list_group);
 void	sort_only_three_case5(t_num_list_node *stack, t_list_group *list_group);
 void	exec_s_r_and_add_instr_node(void (*f)(t_num_list_node *), t_num_list_node *stack,char *instr, t_list_group *list_group);
 void	exec_p_and_add_instr_node(t_num_list_node *from, t_num_list_node *to, char *instr, t_list_group *list_group, t_info *info);
+void	sort_over5(t_list_group *list_group, t_info *info);
 
 #endif

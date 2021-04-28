@@ -288,9 +288,9 @@ int	main(int ac, char **av)
 	no_sort(&list_group, &info);
 	if (ac - 1 < 6)
 		sort_less6(&info, &list_group, ac - 1);
-	// else
-		// sort_over5()
 	//引数が6個以上
+	else
+		sort_over5(&list_group, &info);
 
 	//info.def[list_group.stack_a->next->num]
 	// printf("after quick_sort_id\n");
