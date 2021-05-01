@@ -24,7 +24,8 @@ SRCS_CH := $(CH_DIR)/checker.c \
 SRCS_PS := $(PS_DIR)/push_swap.c \
 			$(PS_DIR)/quick_sort.c \
 			$(PS_DIR)/sort_only_3_node.c \
-			$(PS_DIR)/sort_over5.c
+			$(PS_DIR)/sort_over5.c \
+			$(PS_DIR)/exit_ps.c \
 
 
 OBJCS_CH := $(SRCS_CH:%.c=%.o)

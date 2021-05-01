@@ -14,8 +14,18 @@
 
 // //sortしたら命令をlistに格納する
 
-void	exec_s_r_and_add_instr_node(void (*f)(t_num_list_node *), t_num_list_node *stack,char *instr, t_list_group *list_group)
+void	exec_s_r_and_add_instr_node(void (*f)(t_num_list_node *), t_num_list_node *stack,char *instr, t_list_group *list_group, t_info *info)
 {
+	int		pivot;
+
+	pivot = info->p_head->next->p_value;
+	if (!ft_strncmp(instr, "ra", 3) && list_group->stack_a->next->num == info->want)
+	{
+		//pivotをsortする場合はpivot_listから削除する
+		if (pivot == info->want)
+			free_one_pivot_node(info->p_head->next);
+		info->want++;
+	}
 	f(stack);
 	add_node_to_instr_list(instr, list_group);
 }
@@ -37,7 +47,7 @@ void	exec_p_and_add_instr_node(t_num_list_node *from, t_num_list_node *to, char 
 }
 
 
-void	sort_only_three(t_num_list_node *stack, t_list_group *list_group)
+void	sort_only_three(t_num_list_node *stack, t_list_group *list_group, t_info *info)
 {
 	int	first;
 	int	second;
@@ -48,19 +58,19 @@ void	sort_only_three(t_num_list_node *stack, t_list_group *list_group)
 	third = stack->next->next->next->num;
 	//2, 1, 3
 	if (first > second && second < third && first < third)
-		sort_only_three_case1(stack, list_group);
+		sort_only_three_case1(stack, list_group, info);
 	//3, 2, 1
 	else if (first > second && second > third && first > third)
-		sort_only_three_case2(stack, list_group);
+		sort_only_three_case2(stack, list_group, info);
 	//3, 1, 2
 	else if (first > second && second < third && first > third)
-		sort_only_three_case3(stack, list_group);
+		sort_only_three_case3(stack, list_group, info);
 	//1, 3, 2
 	else if (first < second && second > third && first < third)
-		sort_only_three_case4(stack, list_group);
+		sort_only_three_case4(stack, list_group, info);
 	//2, 3, 1
 	else if (first < second && second > third && first > third)
-		sort_only_three_case5(stack, list_group);
+		sort_only_three_case5(stack, list_group, info);
 }
 
 int		count_size(t_num_list_node *stack)
@@ -102,24 +112,24 @@ int		find_min_value(t_num_list_node *head)
 	return (res);
 }
 
-void	min_move_top(t_num_list_node *stack, int min, t_info *info, t_list_group *list_group)
+void	min_move_top(t_num_list_node *stack, int min, t_info *info, t_list_group *list_group, int size)
 {
 	int pivot;
 	int	tmp;
 
-	pivot = (info->a_size) / 2;
+	pivot = size / 2;
 	tmp = min;
 	//半分よりinfo->n[i].id が小さい
 	if (min <= pivot)
 	{
 		while (tmp-- > 0)
-			exec_s_r_and_add_instr_node(exec_r, stack, "ra", list_group);
+			exec_s_r_and_add_instr_node(exec_r, stack, "ra", list_group, info);
 
 	}
 	else
 	{
-		while (tmp++ < info->a_size)
-			exec_s_r_and_add_instr_node(exec_rr, stack, "rra", list_group);
+		while (tmp++ < size)
+			exec_s_r_and_add_instr_node(exec_rr, stack, "rra", list_group, info);
 	}
 }
 
@@ -144,11 +154,11 @@ void	sort_more_four_less_six(t_num_list_node *stack, t_list_group *list_group, t
 		//stack の中から最小値を見つける
 		min = find_min_value(stack);
 		//一番上に持ってくる
-		min_move_top(stack, min, info, list_group);
+		min_move_top(stack, min, info, list_group, info->a_size);
 		//stackの中が3個になるまでpushする
 		exec_p_and_add_instr_node(list_group->stack_a, list_group->stack_b, "pb", list_group, info);
 	}
-	sort_only_three(stack, list_group);
+	sort_only_three(stack, list_group, info);
 	//stack_b から全てpush
 	pb_all_node(list_group, info);
 }
@@ -165,11 +175,11 @@ void	sort_less6(t_info *info, t_list_group *list_group, int size)
 	else if (size == 2)
 	{
 		if (stack_a->next->num > stack_a->next->next->num)
-			exec_s_r_and_add_instr_node(exec_s, stack_a, "sa", list_group);
+			exec_s_r_and_add_instr_node(exec_s, stack_a, "sa", list_group, info);
 	}
 	//引数が3
 	else if (size == 3)
-		sort_only_three(stack_a, list_group);
+		sort_only_three(stack_a, list_group, info);
 	//引数が 5以下
 	else if (size <= 5 )
 		sort_more_four_less_six(stack_a, list_group, info);
@@ -255,6 +265,7 @@ int	main(int ac, char **av)
 	info.all_size = ac - 1;
 	info.a_size = info.all_size;
 	info.b_size = 0;
+	info.want = 0;
 	// int j = 0;
 	// printf("after add_value\n");
 	// printf("[id] value\n");
@@ -320,6 +331,7 @@ int	main(int ac, char **av)
 		instr_count++;
 	}
 	printf("instr_count : %d\n", instr_count);
+	ft_info_free(&info);
 	ft_exit(&list_group);
 	return (0);
 }
