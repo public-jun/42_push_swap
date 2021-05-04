@@ -12,31 +12,60 @@
 
 #include "../../includes/push_swap.h"
 
+void	halve_set2(int b_min_count, t_info *info, t_list_group *list_group)
+{
+	int	push_count;
+	t_num_list_node *stack_a;
+	t_num_list_node *stack_b;
+
+	stack_a = list_group->stack_a;
+	stack_b = list_group->stack_b;
+	push_count = 0;
+	while (push_count < b_min_count)
+	{
+		exec_s_r_and_add_instr_node(exec_rr, stack_b, "rrb", list_group, info);
+		exec_p_and_add_instr_node(stack_b, stack_a, "pa", list_group, info);
+		push_count++;
+	}
+	while (push_count)
+	{
+		exec_s_r_and_add_instr_node(exec_r, stack_a, "ra", list_group, info);
+		push_count--;
+	}
+	while (stack_b->prev->num == info->want)
+	{
+		exec_s_r_and_add_instr_node(exec_rr, stack_b, "rrb", list_group, info);
+		exec_p_and_add_instr_node(stack_b, stack_a, "pa", list_group, info);
+		exec_s_r_and_add_instr_node(exec_r, stack_a, "ra", list_group, info);
+	}
+}
+
 void	halve_set(t_info *info, t_list_group *list_group)
 {
 	t_num_list_node *tmp;
-	int		half_size;
+	int		pivot;
+	int		b_min_count;
 
-	//size のぶんループを回す かつ b が半分になったらやめる
 	tmp = list_group->stack_a->next;
-	half_size = (info->all_size - info->want) / 2;
-	add_front_pivot_list(info->b_min + half_size, list_group, info);
-	while (info->b_size != half_size)
+	pivot = info->all_size / 2;
+	add_front_pivot_list(pivot, list_group, info);
+	b_min_count = 0;
+	while (info->b_size != pivot)
 	{
-		if (tmp->num < info->b_min + half_size)
+		if (tmp->num < pivot)
 		{
-			tmp = tmp->next;
 			exec_p_and_add_instr_node(list_group->stack_a, list_group->stack_b, "pb", list_group, info);
-			if ( list_group->stack_b->prev->num != 0 && list_group->stack_b->next->num == 0)
+			if (list_group->stack_b->next->num == b_min_count)
+			{
 				exec_s_r_and_add_instr_node(exec_r, list_group->stack_b, "rb", list_group, info);
+				b_min_count++;
+			}
 		}
 		else
-		{
-			tmp = tmp->next;
 			exec_s_r_and_add_instr_node(exec_r, list_group->stack_a, "ra", list_group, info);
-		}
+		tmp = list_group->stack_a->next;
 	}
-	exec_s_r_and_add_instr_node(exec_rr, list_group->stack_b, "rrb", list_group, info);
+	halve_set2(b_min_count, info, list_group);
 }
 
 t_pivot	*make_new_pivot(t_list_group *list_group, t_info *info, int pivot)
@@ -71,15 +100,48 @@ void	add_front_pivot_list(int pivot, t_list_group *list_group, t_info *info)
 	head->next = new_node;
 }
 
+void	serch_want(t_list_group *list_group, t_info *info, int pb_flag)
+{
+	t_num_list_node *stack_a;
+	t_num_list_node *stack_b;
+
+	stack_a = list_group->stack_a;
+	stack_b = list_group->stack_b;
+	while ((stack_a->next->num == info->want
+		|| stack_a->next->next->num == info->want
+		|| stack_b->next->num == info->want
+		|| stack_b->next->next->num == info->want
+		|| stack_b->prev->num == info->want)
+		&& info->want != info->all_size)
+	{
+		if (stack_a->next->num == info->want)
+			exec_s_r_and_add_instr_node(exec_r, stack_a, "ra", list_group, info);
+		else if (stack_b->next->num == info->want)
+			exec_p_and_add_instr_node(stack_b, stack_a, "pa", list_group, info);
+		else if (stack_b->next->next->num == info->want)
+			exec_s_r_and_add_instr_node(exec_s, stack_b, "sb", list_group, info);
+		else if (stack_b->prev->num == info->want)
+			exec_s_r_and_add_instr_node(exec_rr, stack_b, "rrb", list_group, info);
+		else if (stack_a->next->next->num == info->want)
+		{
+			if (pb_flag)
+				exec_p_and_add_instr_node(stack_a, stack_b, "pb", list_group, info);
+			else
+				exec_s_r_and_add_instr_node(exec_s, stack_a, "sa", list_group, info);
+		}
+	}
+}
+
 void	b_quick_sort(t_list_group *list_group, t_info *info)
 {
 	int	pivot;
 	t_num_list_node *end;
 
 	//pivot を求める
-	pivot = (info->b_size / 2) + info->b_min;
+	pivot = (info->b_size / 2) + info->want;
 	end = NULL;
-	while (list_group->stack_b->next != end || info->b_size > 0)
+	add_front_pivot_list(pivot, list_group, info);
+	while (list_group->stack_b->next != end && info->b_size > 0 && list_group->stack_a->prev != end)
 	{
 		//want の場合 pa してra
 		if (list_group->stack_b->next->num == info->want)
@@ -98,18 +160,17 @@ void	b_quick_sort(t_list_group *list_group, t_info *info)
 			exec_s_r_and_add_instr_node(exec_r, list_group->stack_b, "rb", list_group, info);
 		}
 	}
-	//pivot をリストに追加
-	add_front_pivot_list(pivot, list_group, info);
-	while (list_group->stack_a->next->num == info->want || list_group->stack_a->next->next->num == info->want)
-	{
-		if (list_group->stack_a->next->num == info->want)
-			exec_s_r_and_add_instr_node(exec_r, list_group->stack_a, "ra", list_group, info);
-		else
-		{
-			exec_s_r_and_add_instr_node(exec_s, list_group->stack_a, "sa", list_group, info);
-			exec_s_r_and_add_instr_node(exec_r, list_group->stack_a, "ra", list_group, info);
-		}
-	}
+	serch_want(list_group, info, 0);
+	// while (list_group->stack_a->next->num == info->want || list_group->stack_a->next->next->num == info->want)
+	// {
+	// 	if (list_group->stack_a->next->num == info->want)
+	// 		exec_s_r_and_add_instr_node(exec_r, list_group->stack_a, "ra", list_group, info);
+	// 	else
+	// 	{
+	// 		exec_s_r_and_add_instr_node(exec_s, list_group->stack_a, "sa", list_group, info);
+	// 		exec_s_r_and_add_instr_node(exec_r, list_group->stack_a, "ra", list_group, info);
+	// 	}
+	// }
 }
 
 
@@ -163,6 +224,37 @@ void	sort_remain_node(t_list_group *group, t_info *info)
 		exec_p_and_add_instr_node(group->stack_b, group->stack_a, "pa", group, info);
 		exec_s_r_and_add_instr_node(exec_r, group->stack_a, "ra", group, info);
 	}
+	serch_want(group, info, 0);
+}
+
+int		count_pivot_node(t_info *info)
+{
+	t_pivot	*tmp;
+	int		count;
+
+	tmp = info->p_head->next;
+	count = 0;
+	while (tmp != info->p_head)
+	{
+		count++;
+		tmp = tmp->next;
+	}
+	return (count);
+}
+
+void	sort_wrap(t_list_group *list_group, t_info *info)
+{
+	t_num_list_node *stack_a;
+	t_num_list_node *stack_b;
+
+	stack_a = list_group->stack_a;
+	stack_b = list_group->stack_b;
+	while (stack_a->next->num != 0)
+	{
+		if (stack_a->next->num != 0)
+			exec_p_and_add_instr_node(stack_a, stack_b, "pb", list_group, info);
+		serch_want(list_group, info, 1);
+	}
 }
 
 void	sort_over5(t_list_group *list_group, t_info *info)
@@ -174,55 +266,53 @@ void	sort_over5(t_list_group *list_group, t_info *info)
 	/*
 	** after half
 	*/
-	printf("|	stack_a		|	stack_b		|\n");
+	// printf("|%*s    |%*s    |\n", 10, "stack_a", 10, "stack_b");
 	t_num_list_node *tmp_a;
 	t_num_list_node *tmp_b;
-	tmp_a = list_group->stack_a->next;
-	tmp_b = list_group->stack_b->next;
-	while (tmp_a != list_group->stack_a || tmp_b != list_group->stack_b)
-	{
-		if (tmp_a != list_group->stack_a)
-		{
-			printf("|[%d] %*d", tmp_a->num, -10, info->def[tmp_a->num]);
-			fflush(stdout);
-			tmp_a = tmp_a->next;
-		}
-		if (tmp_b != list_group->stack_b)
-		{
-			printf("|[%d] %*d|\n", tmp_b->num, -10, info->def[tmp_b->num]);
-			tmp_b = tmp_b->next;
-		}
-	}
-	while (info->want != info->all_size)
-	{
-		/*
-		** bを半分にする
-		** pivot を記録する
-		** b に残ったノード数を返す
-		*/
+	// tmp_a = list_group->stack_a->next;
+	// tmp_b = list_group->stack_b->next;
+	// while (tmp_a != list_group->stack_a || tmp_b != list_group->stack_b)
+	// {
+	// 	if (tmp_a != list_group->stack_a)
+	// 	{
+	// 		printf("|[%d] %*d", tmp_a->num, -10, info->def[tmp_a->num]);
+	// 		fflush(stdout);
+	// 		tmp_a = tmp_a->next;
+	// 	}
+	// 	printf("|");
+	// 	if (tmp_b != list_group->stack_b)
+	// 	{
+	// 		printf("[%d] %*d|", tmp_b->num, -10, info->def[tmp_b->num]);
+	// 		tmp_b = tmp_b->next;
+	// 	}
+	// 	printf("\n");
+	// }
+	int	tmp_pivot;
+	tmp_pivot = 0;
+	 while (info->want != info->all_size)
+	 {
 		while (info->b_size > 3)
 			b_quick_sort(list_group, info);
-		//残った要素を小さい順にaにpush する
 		if (info->b_size)
 			sort_remain_node(list_group, info);
-		//一番小さいpivot未満が存在していればbにpush その際ソートを行う
-		if (info->want < info->p_head->next->p_value)
-			pb_less_than_pivot(list_group, info);
-		//半分まで到達していたらpivotは存在しないのでa をbに半分pushする
-		else if (info->want >= info->p_head->next->p_value)
+		if (info->want == info->all_size)
+			break;
+		else if (count_pivot_node(info) > 1)
 		{
-			info->b_min = info->want;
-			halve_set(info, list_group);
+			while (info->want < tmp_pivot && list_group->stack_a->next->num != 0)
+			{
+				if (list_group->stack_a->next->num != 0 && info->want < tmp_pivot)
+					exec_p_and_add_instr_node(list_group->stack_a, list_group->stack_b, "pb", list_group, info);
+				serch_want(list_group, info, 1);
+			}
+			if (info->want == info->all_size)
+				break;
 		}
-		//存在してなければ次のpivotまでをbにpushして上に戻る
-		// else if (info->want == info->p_head->next->p_value)
-		// {
-		// 	next_pivot(list_group, info);
-		// }
+		sort_wrap(list_group, info);
 		info->b_min = info->want;
-	}
-
-	printf("\n\nafter sort\n");
+	 }
+	printf("\n-----after_sort------\n");
+	printf("|%*s    |%*s    |\n", 10, "stack_a", 10, "stack_b");
 	tmp_a = list_group->stack_a->next;
 	tmp_b = list_group->stack_b->next;
 	while (tmp_a != list_group->stack_a || tmp_b != list_group->stack_b)
@@ -233,10 +323,40 @@ void	sort_over5(t_list_group *list_group, t_info *info)
 			fflush(stdout);
 			tmp_a = tmp_a->next;
 		}
+		printf("|");
 		if (tmp_b != list_group->stack_b)
 		{
-			printf("|[%d] %*d|\n", tmp_b->num, -10, info->def[tmp_b->num]);
+			printf("[%d] %*d|", tmp_b->num, -10, info->def[tmp_b->num]);
 			tmp_b = tmp_b->next;
 		}
+		printf("\n");
 	}
+	// while (info->want != info->all_size)
+	// {
+	// 	/*
+	// 	** bを半分にする
+	// 	** pivot を記録する
+	// 	** b に残ったノード数を返す
+	// 	*/
+	// 	while (info->b_size > 3)
+	// 		b_quick_sort(list_group, info);
+	// 	//残った要素を小さい順にaにpush する
+	// 	if (info->b_size)
+	// 		sort_remain_node(list_group, info);
+	// 	//一番小さいpivot未満が存在していればbにpush その際ソートを行う
+	// 	if (info->want < info->p_head->next->p_value)
+	// 		pb_less_than_pivot(list_group, info);
+	// 	//半分まで到達していたらpivotは存在しないのでa をbに半分pushする
+	// 	else if (info->want >= info->p_head->next->p_value)
+	// 	{
+	// 		info->b_min = info->want;
+	// 		halve_set(info, list_group);
+	// 	}
+	// 	//存在してなければ次のpivotまでをbにpushして上に戻る
+	// 	// else if (info->want == info->p_head->next->p_value)
+	// 	// {
+	// 	// 	next_pivot(list_group, info);
+	// 	// }
+	// 	info->b_min = info->want;
+	// }
 }

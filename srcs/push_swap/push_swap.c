@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+#define  ESC 0x1b
 
 // //sortしたら命令をlistに格納する
 
@@ -243,6 +244,117 @@ void	no_sort(t_list_group *list_group, t_info *info)
 
 }
 
+void	copy_stack_a(t_list_group *group)
+{
+	t_num_list_node *tmp;
+	t_num_list_node *new_node;
+
+	group->stack_a_test = make_new_ele(group, -1);
+	group->stack_b_test = make_new_ele(group, -1);
+	group->stack_a_test->prev = group->stack_a_test;
+	group->stack_a_test->next = group->stack_a_test;
+	group->stack_b_test->prev = group->stack_b_test;
+	group->stack_b_test->next = group->stack_b_test;
+
+	tmp = group->stack_a->next;
+	int		value;
+	while (tmp != group->stack_a)
+	{
+		value = tmp->num;
+		new_node = make_new_ele(group, value);
+		new_node->prev = group->stack_a_test->prev;
+		new_node->next = group->stack_a_test;
+		group->stack_a_test->prev->next = new_node;
+		group->stack_a_test->prev = new_node;
+		tmp = tmp->next;
+	}
+}
+
+
+void	test(t_list_group *list_group, t_info *info)
+{
+	int	loop;
+	t_num_list_node *a;
+	t_num_list_node *b;
+	t_num_list_node *tmp_a;
+	t_num_list_node *tmp_b;
+	t_instr_list_node *tmp_instr;
+	char *instr;
+	int	flag;
+	printf("%c[2J", ESC);
+
+	loop = 0;
+	a = list_group->stack_a_test;
+	b = list_group->stack_b_test;
+	tmp_instr = list_group->head_instr->next;
+	while (tmp_instr != list_group->head_instr)
+	{
+		printf("%c[2J", ESC);
+		printf("|%*s    |%*s    |%*s    |\n", 10, "stack_a", 10, "stack_b", 10, "next");
+		tmp_a = a->next;
+		tmp_b = b->next;
+		flag = 0;
+		int loop_count;
+		loop_count = 0 ;
+		while ((tmp_a != a || tmp_b != b) && loop_count < 40)
+		{
+			if (tmp_a != a)
+			{
+				printf("|[%*d] %*d", 4, tmp_a->num, -10, info->def[tmp_a->num]);
+				fflush(stdout);
+				tmp_a = tmp_a->next;
+			}
+			printf("|");
+			if (tmp_b != b)
+			{
+				printf("[%*d] %*d|", 4, tmp_b->num, -10, info->def[tmp_b->num]);
+				tmp_b = tmp_b->next;
+			}
+			if (tmp_instr != list_group->head_instr && flag == 0)
+			{
+				printf("%s |", tmp_instr->instr);
+				flag = 1;
+			}
+			printf("\n");
+			loop_count++;
+		}
+		//instruction 実行
+	// for (int j = 0; j < (1000000000 / 8); j++) {}
+	instr = tmp_instr->instr;
+	if (!(ft_strncmp(instr, "sa", 3)))
+		exec_s(a);
+	else if (!(ft_strncmp(instr, "sb", 3)))
+		exec_s(b);
+	else if (!(ft_strncmp(instr, "ss", 3)))
+	{
+		exec_s(a);
+		exec_s(b);
+	}
+	else if (!(ft_strncmp(instr, "pa", 3)))
+		exec_p(b, a);
+	else if (!(ft_strncmp(instr, "pb", 3)))
+		exec_p(a, b);
+	else if (!(ft_strncmp(instr, "ra", 3)))
+		exec_r(a);
+	else if (!(ft_strncmp(instr, "rb", 3)))
+		exec_r(b);
+	else if (!(ft_strncmp(instr, "rr", 3)))
+	{
+		exec_r(a);
+		exec_r(b);
+	}
+	else if (!(ft_strncmp(instr, "rra", 4)))
+		exec_rr(a);
+	else if (!(ft_strncmp(instr, "rrb", 4)))
+		exec_rr(b);
+	else if (!(ft_strncmp(instr, "rrr", 4)))
+	{
+		exec_rr(a);
+		exec_rr(b);
+	}
+	tmp_instr = tmp_instr->next;
+	}
+}
 
 int	main(int ac, char **av)
 {
@@ -295,6 +407,8 @@ int	main(int ac, char **av)
 	quick_sort(info.n, 0, info.all_size - 1, SORT_ID);
 	//n のvalue を list化
 	make_stack_num_is_id(&info, &list_group);
+	//stack_a をコピーする
+	copy_stack_a(&list_group);
 	//引数が5以下
 	no_sort(&list_group, &info);
 	if (ac - 1 < 6)
@@ -302,6 +416,9 @@ int	main(int ac, char **av)
 	//引数が6個以上
 	else
 		sort_over5(&list_group, &info);
+
+	//最適化
+	instr_optimization(&list_group);
 
 	//info.def[list_group.stack_a->next->num]
 	// printf("after quick_sort_id\n");
@@ -314,19 +431,43 @@ int	main(int ac, char **av)
 	// 	j++;
 	// }
 
-	t_num_list_node *p = list_group.stack_a;
-	printf("\n---result-----\n");
-	while (p->next != list_group.stack_a)
+	// t_num_list_node *p = list_group.stack_a;
+	// printf("\n---result-----\n");
+	// while (p->next != list_group.stack_a)
+	// {
+	// 	printf("%d\n", info.def[p->next->num]);
+	// 	p = p->next;
+	// }
+
+	//instruction を test_stack に実行する
+	test(&list_group, &info);
+	t_num_list_node *tmp_a;
+	t_num_list_node *tmp_b;
+	tmp_a = list_group.stack_a->next;
+	tmp_b = list_group.stack_b->next;
+	printf("\n\n-----after_sort------\n");
+	while (tmp_a != list_group.stack_a || tmp_b != list_group.stack_b)
 	{
-		printf("%d\n", info.def[p->next->num]);
-		p = p->next;
+		if (tmp_a != list_group.stack_a)
+		{
+			printf("|[%d] %*d", tmp_a->num, -10, info.def[tmp_a->num]);
+			fflush(stdout);
+			tmp_a = tmp_a->next;
+		}
+		printf("|");
+		if (tmp_b != list_group.stack_b)
+		{
+			printf("[%d] %*d|", tmp_b->num, -10, info.def[tmp_b->num]);
+			tmp_b = tmp_b->next;
+		}
+		printf("\n");
 	}
 	printf("\n---instr_list-----\n");
 	t_instr_list_node *instr_p = list_group.head_instr;
 	int instr_count = 0;
 	while (instr_p->next != list_group.head_instr)
 	{
-		printf("%s\n", instr_p->next->instr);
+		// printf("%s\n", instr_p->next->instr);
 		instr_p = instr_p->next;
 		instr_count++;
 	}
