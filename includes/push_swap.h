@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 15:53:35 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/01 19:33:28 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/03 02:13:44 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_info
 	int		a_min;
 	int		b_min;
 	int		want;
-	int		b_want;
 }	t_info;
 
 void	quick_sort(t_pair n[], int left, int right, int flag);
@@ -66,5 +65,6 @@ void	ft_put_error_and_ps_exit(t_list_group *list_group, t_info *info);
 void	add_front_pivot_list(int pivot, t_list_group *list_group, t_info *info);
 int		find_min_value(t_num_list_node *head);
 void	min_move_top(t_num_list_node *stack, int min, t_info *info, t_list_group *list_group, int size);
+void	instr_optimization(t_list_group *list_group);
 
 #endif
