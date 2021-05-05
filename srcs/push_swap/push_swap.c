@@ -319,7 +319,7 @@ void	test(t_list_group *list_group, t_info *info)
 			loop_count++;
 		}
 		//instruction 実行
-	// for (int j = 0; j < (1000000000 / 8); j++) {}
+	// for (int j = 0; j < (1000000000 / 100); j++) {}
 	instr = tmp_instr->instr;
 	if (!(ft_strncmp(instr, "sa", 3)))
 		exec_s(a);
