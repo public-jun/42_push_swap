@@ -1,4 +1,4 @@
-NAME := push_swap
+NAME := checker
 
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror
@@ -9,14 +9,13 @@ LIBFT_LIB := $(LIBFT_DIR)/libft.a
 COMMON_DIR := ../common
 COMMON_LIB := $(COMMON_DIR)/libcommon.a
 
-SRCS_PS := ./push_swap.c \
-			./quick_sort.c \
-			./sort_only_3_node.c \
-			./sort_over5.c \
-			./exit_ps.c \
-			./instr_optimazation.c \
+SRCS_CH := ./checker.c \
+			./get_next_line.c \
+			./get_next_line_utils.c \
+			./read_instruction.c \
+			./check_correct_order.c
 
-OBJCS_PS := $(SRCS_PS:%.c=%.o)
+OBJCS_CH := $(SRCS_CH:%.c=%.o)
 
 INCLUDE := ../../includes
 
@@ -24,8 +23,8 @@ RM := rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJCS_PS) $(LIBFT_LIB) $(COMMON_LIB)
-	$(CC) $(CFLAGS) $(OBJCS_PS) $(LIBFT_LIB) $(COMMON_LIB) -I $(INCLUDE) -o $(NAME)
+$(NAME): $(OBJCS_CH) $(LIBFT_LIB) $(COMMON_LIB)
+	$(CC) $(CFLAGS) $(OBJCS_CH) $(LIBFT_LIB) $(COMMON_LIB) -I $(INCLUDE) -o $(NAME)
 
 $(LIBFT_LIB): $(LIBFT_DIR)
 	$(MAKE) -C $(LIBFT_DIR) bonus
@@ -36,7 +35,7 @@ $(COMMON_LIB): $(COMMON_DIR)
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(COMMON_DIR) clean
-	$(RM) $(OBJCS_PS)
+	$(RM) $(OBJCS_CH)
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
