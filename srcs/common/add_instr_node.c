@@ -6,11 +6,11 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 17:54:09 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/02 02:28:21 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/05 17:44:55 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include <common.h>
 
 t_instr_list_node	*make_new_instr_node(t_list_group *list_group, char *instr)
 {

@@ -13,7 +13,7 @@ CC := gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-INCLUDE = ./
+INCLUDE = ../../includes
 
 RM := rm -f
 

@@ -6,11 +6,11 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 15:59:18 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/02 15:23:33 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/05 17:45:27 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include <common.h>
 
 
 t_num_list_node *free_one_node(t_num_list_node *node)

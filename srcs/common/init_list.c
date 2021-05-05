@@ -6,11 +6,11 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:12:51 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/02 13:31:38 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/05 17:45:35 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include <common.h>
 
 void	init_instr_list(t_list_group *list_group)
 {
