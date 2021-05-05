@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 15:53:35 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/05 17:47:26 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/05 18:01:46 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,35 +20,7 @@
 #include "../libft/libft.h"
 #include "common.h"
 
-# define ARGLIMIT 1001
-# define SORT_VALUE 0
 # define SORT_ID 1
-
-typedef struct s_pair
-{
-	int		value;
-	int		id;
-}	t_pair;
-
-typedef struct s_pivot
-{
-	int		p_value;
-	struct s_pivot	*next;
-	struct s_pivot	*prev;
-}	t_pivot;
-
-typedef struct s_info
-{
-	t_pair	n[ARGLIMIT + 10];
-	int		def[ARGLIMIT + 10];
-	t_pivot	*p_head;
-	int		all_size;
-	int		a_size;
-	int		b_size;
-	int		a_min;
-	int		b_min;
-	int		want;
-}	t_info;
 
 void	quick_sort(t_pair n[], int left, int right, int flag);
 void	sort_only_three_case1(t_num_list_node *stack, t_list_group *list_group, t_info *info);
