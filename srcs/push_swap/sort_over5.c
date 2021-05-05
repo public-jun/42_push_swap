@@ -100,7 +100,7 @@ void	add_front_pivot_list(int pivot, t_list_group *list_group, t_info *info)
 	head->next = new_node;
 }
 
-void	serch_want(t_list_group *list_group, t_info *info, int pb_flag)
+void	serch_want(t_list_group *list_group, t_info *info)
 {
 	t_num_list_node *stack_a;
 	t_num_list_node *stack_b;
@@ -123,12 +123,7 @@ void	serch_want(t_list_group *list_group, t_info *info, int pb_flag)
 		else if (stack_b->prev->num == info->want)
 			exec_s_r_and_add_instr_node(exec_rr, stack_b, "rrb", list_group, info);
 		else if (stack_a->next->next->num == info->want)
-		{
-			if (pb_flag)
-				exec_p_and_add_instr_node(stack_a, stack_b, "pb", list_group, info);
-			else
-				exec_s_r_and_add_instr_node(exec_s, stack_a, "sa", list_group, info);
-		}
+			exec_s_r_and_add_instr_node(exec_s, stack_a, "sa", list_group, info);
 	}
 }
 
@@ -160,7 +155,7 @@ void	b_quick_sort(t_list_group *list_group, t_info *info)
 			exec_s_r_and_add_instr_node(exec_r, list_group->stack_b, "rb", list_group, info);
 		}
 	}
-	serch_want(list_group, info, 0);
+	serch_want(list_group, info);
 	// while (list_group->stack_a->next->num == info->want || list_group->stack_a->next->next->num == info->want)
 	// {
 	// 	if (list_group->stack_a->next->num == info->want)
@@ -224,7 +219,7 @@ void	sort_remain_node(t_list_group *group, t_info *info)
 		exec_p_and_add_instr_node(group->stack_b, group->stack_a, "pa", group, info);
 		exec_s_r_and_add_instr_node(exec_r, group->stack_a, "ra", group, info);
 	}
-	serch_want(group, info, 0);
+	serch_want(group, info);
 }
 
 int		count_pivot_node(t_info *info)
@@ -253,7 +248,7 @@ void	sort_wrap(t_list_group *list_group, t_info *info)
 	{
 		if (stack_a->next->num != 0)
 			exec_p_and_add_instr_node(stack_a, stack_b, "pb", list_group, info);
-		serch_want(list_group, info, 1);
+		serch_want(list_group, info);
 	}
 }
 
@@ -289,28 +284,49 @@ void	sort_over5(t_list_group *list_group, t_info *info)
 	// }
 	int	tmp_pivot;
 	tmp_pivot = 0;
-	 while (info->want != info->all_size)
-	 {
-		while (info->b_size > 3)
+	while (info->want != info->all_size)
+	{
+		while (info->b_size > 4)
 			b_quick_sort(list_group, info);
 		if (info->b_size)
 			sort_remain_node(list_group, info);
 		if (info->want == info->all_size)
 			break;
-		else if (count_pivot_node(info) > 1)
+		/*
+		** pb を行う部分
+		** pivot が複数ある場合 b_size が 3 以上になるまでpushを繰り返す。
+		** もしくはpivotが1になるまで
+		*/
+
+		/*
+		** if (want == info->p_head->next->p_value)
+		** tmp_pivot == info->p_head->next->next->p_value
+		** tmp_pivot より小さい数をpbする
+		*/
+		if (count_pivot_node(info) > 1  && info->want == info->p_head->next->p_value)
 		{
-			while (info->want < tmp_pivot && list_group->stack_a->next->num != 0)
+			tmp_pivot = info->p_head->next->next->p_value;
+			while (list_group->stack_a->next->num < tmp_pivot && info->want != info->all_size)
 			{
-				if (list_group->stack_a->next->num != 0 && info->want < tmp_pivot)
-					exec_p_and_add_instr_node(list_group->stack_a, list_group->stack_b, "pb", list_group, info);
-				serch_want(list_group, info, 1);
+				exec_p_and_add_instr_node(list_group->stack_a, list_group->stack_b, "pb", list_group, info);
+				serch_want(list_group, info);
 			}
-			if (info->want == info->all_size)
-				break;
 		}
-		sort_wrap(list_group, info);
+		else if (count_pivot_node(info) > 0 && info->want < info->p_head->next->p_value)
+		{
+			tmp_pivot = info->p_head->next->p_value;
+			while (list_group->stack_a->next->num < tmp_pivot && info->want != info->all_size)
+			{
+				exec_p_and_add_instr_node(list_group->stack_a, list_group->stack_b, "pb", list_group, info);
+				serch_want(list_group, info);
+			}
+		}
+		else
+			 sort_wrap(list_group, info);
+		// want < info->p_head->next->p_value
+		// sort_wrap(list_group, info);
 		info->b_min = info->want;
-	 }
+	}
 	printf("\n-----after_sort------\n");
 	printf("|%*s    |%*s    |\n", 10, "stack_a", 10, "stack_b");
 	tmp_a = list_group->stack_a->next;
@@ -360,3 +376,17 @@ void	sort_over5(t_list_group *list_group, t_info *info)
 	// 	info->b_min = info->want;
 	// }
 }
+
+		// else if (count_pivot_node(info) > 1)
+		// {
+		// 	while (info->want < tmp_pivot && list_group->stack_a->next->num != 0)
+		// 	{
+		// 		if (list_group->stack_a->next->num != 0 && info->want < tmp_pivot)
+		// 			exec_p_and_add_instr_node(list_group->stack_a, list_group->stack_b, "pb", list_group, info);
+		// 		serch_want(list_group, info, 1);
+		// 	}
+		// 	if (info->want == info->all_size)
+		// 		break;
+		// }
+		// sort_wrap(list_group, info);
+		// info->b_min = info->want;
