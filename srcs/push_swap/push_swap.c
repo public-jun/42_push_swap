@@ -467,7 +467,7 @@ int	main(int ac, char **av)
 	int instr_count = 0;
 	while (instr_p->next != list_group.head_instr)
 	{
-		// printf("%s\n", instr_p->next->instr);
+		printf("%s\n", instr_p->next->instr);
 		instr_p = instr_p->next;
 		instr_count++;
 	}

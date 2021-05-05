@@ -6,12 +6,12 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 00:36:07 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/27 15:52:06 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/05 17:45:19 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
-#include "common.h"
+#include <struct.h>
+#include <common.h>
 
 //type s*
 void	exec_s(t_num_list_node *stack)

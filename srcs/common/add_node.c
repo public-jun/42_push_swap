@@ -6,11 +6,11 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:15:57 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/17 18:11:27 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/05 17:45:04 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include <common.h>
 
 t_num_list_node *make_new_ele(t_list_group *list_group, int value)
 {

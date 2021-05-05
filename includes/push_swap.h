@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 15:53:35 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/03 02:13:44 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/05 17:47:26 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <limits.h>
 #include "struct.h"
 #include "../libft/libft.h"
-#include "../srcs/common/common.h"
+#include "common.h"
 
 # define ARGLIMIT 1001
 # define SORT_VALUE 0
