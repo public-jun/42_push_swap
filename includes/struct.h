@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 22:02:22 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/05 18:01:42 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/06 13:58:39 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define STRUCT_H
 
 # define ARGLIMIT 1001
-# define SORT_VALUE 0
 
 typedef struct s_num_list_node
 {
