@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include <push_swap.h>
 
 void	halve_set2(int b_min_count, t_info *info, t_list_group *list_group)
 {

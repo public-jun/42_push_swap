@@ -6,11 +6,11 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 17:05:16 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/26 00:15:07 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/05 22:28:22 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include <push_swap.h>
 
 void	pair_swap(t_pair *a, t_pair *b)
 {

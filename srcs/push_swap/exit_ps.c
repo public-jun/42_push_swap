@@ -6,11 +6,11 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 16:19:46 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/29 16:20:13 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/05 22:27:27 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include <push_swap.h>
 
 t_pivot *free_one_pivot_node(t_pivot *node)
 {

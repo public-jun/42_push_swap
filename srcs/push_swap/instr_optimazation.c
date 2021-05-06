@@ -6,11 +6,11 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 01:36:13 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/05 16:14:06 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/05 22:27:38 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include <push_swap.h>
 
 void	free_only_instr_node(t_instr_list_node **node)
 {
