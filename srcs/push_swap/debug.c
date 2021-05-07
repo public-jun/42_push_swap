@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 22:25:45 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/06 14:09:45 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 12:54:29 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	option_v(t_list_group *list_group, t_info *info)
 			loop_count++;
 		}
 		//instruction 実行
-	// for (int j = 0; j < (1000000000 / 100); j++) {}
+	for (int j = 0; j < (1000000000 / 4); j++) {}
 	instr = tmp_instr->instr;
 	if (!(ft_strncmp(instr, "sa", 3)))
 		exec_s(a);

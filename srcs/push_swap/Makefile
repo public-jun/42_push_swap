@@ -22,6 +22,7 @@ SRCS_PS := ./main.c \
 			./sort_only_3_node1.c \
 			./sort_only_3_node2.c \
 			./utils.c \
+			./print_ans.c \
 
 OBJCS_PS := $(SRCS_PS:%.c=%.o)
 
@@ -54,5 +55,9 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+testps:
+	$(MAKE) -C $(LIBFT_DIR)
+	$(CC) -g $(CFLAGS) $(SRCS_PS) $(COMMON_DIR)/*.c $(LIBFT_LIB) -I $(INCLUDE) -o $(NAME)
 
 .PHONY: all clean fclean re

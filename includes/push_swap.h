@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 15:53:35 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/06 13:58:35 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 11:02:53 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 /*
 ** init_info
 */
-void	init_info(t_info *info, int num_ac);
+void	init_info(t_list_group *list_group, t_info *info);
 void	add_value_to_pair(t_info *info, int value, int i, t_list_group *list_group);
 void	set_pair_info(t_list_group *list_group, t_info *info);
 
@@ -60,7 +60,8 @@ void	sort_only_three_case5(t_num_list_node *stack, t_list_group *list_group, t_i
 /*
 ** sort_less6
 */
-void	sort_less6(t_info *info, t_list_group *list_group, int size);
+void	sort_less6(t_info *info, t_list_group *list_group);
+t_pivot	*make_new_pivot(t_list_group *list_group, t_info *info, int pivot);
 /*
 ** utils
 */
@@ -69,6 +70,11 @@ void	min_move_top(t_num_list_node *stack, int min, t_info *info, t_list_group *l
 void	pb_all_node(t_list_group *list_group, t_info *info);
 int		count_size(t_num_list_node *stack);
 void	no_sort(t_list_group *list_group, t_info *info);
+/*
+** print_ans
+*/
+void	print_ans(t_list_group *list_group);
+
 
 
 #endif

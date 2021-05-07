@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 00:37:40 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/05 17:46:00 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 11:20:47 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ void	exec_r(t_num_list_node *stack);
 void	exec_s(t_num_list_node *stack);
 void	exec_rr(t_num_list_node *stack);
 void	exec_p(t_num_list_node *from, t_num_list_node *to);
+int		count_num_size(char **dst);
 #endif

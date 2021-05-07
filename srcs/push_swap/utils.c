@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 12:10:43 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/06 13:56:25 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 13:18:05 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,22 @@ void	min_move_top(t_num_list_node *stack, int min, t_info *info, t_list_group *l
 	if (min <= pivot)
 	{
 		while (tmp-- > 0)
-			exec_s_r_and_add_instr_node(exec_r, stack, "ra", list_group, info);
+		{
+			if (stack == list_group->stack_a)
+				exec_s_r_and_add_instr_node(exec_r, stack, "ra", list_group, info);
+			else
+				exec_s_r_and_add_instr_node(exec_r, stack, "rb", list_group, info);
+		}
 	}
 	else
 	{
 		while (tmp++ < size)
-			exec_s_r_and_add_instr_node(exec_rr, stack, "rra", list_group, info);
+		{
+			if (stack == list_group->stack_a)
+				exec_s_r_and_add_instr_node(exec_rr, stack, "rra", list_group, info);
+			else
+				exec_s_r_and_add_instr_node(exec_rr, stack, "rrb", list_group, info);
+		}
 	}
 }
 

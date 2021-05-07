@@ -80,13 +80,6 @@ t_pivot	*make_new_pivot(t_list_group *list_group, t_info *info, int pivot)
 
 }
 
-void	pivot_init(t_info *info, t_list_group *list_group)
-{
-	info->p_head = make_new_pivot(list_group, info, 0);
-	info->p_head->prev = info->p_head;
-	info->p_head->next = info->p_head;
-}
-
 void	add_front_pivot_list(int pivot, t_list_group *list_group, t_info *info)
 {
 	t_pivot		*new_node;
@@ -254,7 +247,6 @@ void	sort_wrap(t_list_group *list_group, t_info *info)
 
 void	sort_over5(t_list_group *list_group, t_info *info)
 {
-	pivot_init(info, list_group);
 	//pivotより小さいものは b 大きいものは aにpushする
 	info->b_min = info->want;
 	halve_set(info, list_group);
@@ -262,8 +254,8 @@ void	sort_over5(t_list_group *list_group, t_info *info)
 	** after half
 	*/
 	// printf("|%*s    |%*s    |\n", 10, "stack_a", 10, "stack_b");
-	t_num_list_node *tmp_a;
-	t_num_list_node *tmp_b;
+	// t_num_list_node *tmp_a;
+	// t_num_list_node *tmp_b;
 	// tmp_a = list_group->stack_a->next;
 	// tmp_b = list_group->stack_b->next;
 	// while (tmp_a != list_group->stack_a || tmp_b != list_group->stack_b)
@@ -327,26 +319,26 @@ void	sort_over5(t_list_group *list_group, t_info *info)
 		// sort_wrap(list_group, info);
 		info->b_min = info->want;
 	}
-	printf("\n-----after_sort------\n");
-	printf("|%*s    |%*s    |\n", 10, "stack_a", 10, "stack_b");
-	tmp_a = list_group->stack_a->next;
-	tmp_b = list_group->stack_b->next;
-	while (tmp_a != list_group->stack_a || tmp_b != list_group->stack_b)
-	{
-		if (tmp_a != list_group->stack_a)
-		{
-			printf("|[%d] %*d", tmp_a->num, -10, info->def[tmp_a->num]);
-			fflush(stdout);
-			tmp_a = tmp_a->next;
-		}
-		printf("|");
-		if (tmp_b != list_group->stack_b)
-		{
-			printf("[%d] %*d|", tmp_b->num, -10, info->def[tmp_b->num]);
-			tmp_b = tmp_b->next;
-		}
-		printf("\n");
-	}
+	// printf("\n-----after_sort------\n");
+	// printf("|%*s    |%*s    |\n", 10, "stack_a", 10, "stack_b");
+	// tmp_a = list_group->stack_a->next;
+	// tmp_b = list_group->stack_b->next;
+	// while (tmp_a != list_group->stack_a || tmp_b != list_group->stack_b)
+	// {
+	// 	if (tmp_a != list_group->stack_a)
+	// 	{
+	// 		printf("|[%d] %*d", tmp_a->num, -10, info->def[tmp_a->num]);
+	// 		fflush(stdout);
+	// 		tmp_a = tmp_a->next;
+	// 	}
+	// 	printf("|");
+	// 	if (tmp_b != list_group->stack_b)
+	// 	{
+	// 		printf("[%d] %*d|", tmp_b->num, -10, info->def[tmp_b->num]);
+	// 		tmp_b = tmp_b->next;
+	// 	}
+	// 	printf("\n");
+	// }
 	// while (info->want != info->all_size)
 	// {
 	// 	/*
