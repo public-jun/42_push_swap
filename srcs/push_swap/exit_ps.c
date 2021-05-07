@@ -6,15 +6,15 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 16:19:46 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 10:41:32 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 22:31:55 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-t_pivot *free_one_pivot_node(t_pivot *node)
+t_pivot	*free_one_pivot_node(t_pivot *node)
 {
-	t_pivot *tmp_prev;
+	t_pivot	*tmp_prev;
 
 	tmp_prev = node->prev;
 	node->next->prev = tmp_prev;
@@ -25,7 +25,7 @@ t_pivot *free_one_pivot_node(t_pivot *node)
 
 void	ft_info_free(t_info *info)
 {
-	t_pivot *tmp;
+	t_pivot	*tmp;
 
 	tmp = info->p_head->next;
 	while (tmp != info->p_head)

@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 23:05:25 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 10:19:50 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 22:27:39 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	sort_more_four_less_six(t_num_list_node *stack, t_list_group *list_group, t
 		//一番上に持ってくる
 		min_move_top(stack, min, info, list_group, info->a_size);
 		//stackの中が3個になるまでpushする
-		exec_p_and_add_instr_node(list_group->stack_a, list_group->stack_b, "pb", list_group, info);
+		exec_p_and_add_instr_node(list_group->stack_a, list_group->stack_b, list_group, info);
 	}
 	sort_only_three(stack, list_group, info);
 	//stack_b から全てpush
-	pb_all_node(list_group, info);
+	pa_all_node(list_group, info);
 }
 
 void	sort_less6(t_info *info, t_list_group *list_group)
