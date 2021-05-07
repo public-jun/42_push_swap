@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 00:37:40 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 16:24:08 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 22:00:46 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,18 @@
 #include <limits.h>
 #include "struct.h"
 #include "../libft/libft.h"
-
 #include <stdio.h>
+
+# define CLEAR "\033[2J"
+# define GREEN "\033[32m"
+# define RED "\033[31m"
+# define DEFCOLOR "\033[39m"
+# define BLACK "\033[30m"
+# define INVERSION "\033[7m"
+# define DEFSET "\033[0m"
+# define EMPHASIZE "\033[1m"
+# define WHITE_BACK "\033[47m"
+# define DEFCOLOR_BACK "\033[49m"
 
 void	init_instr_list(t_list_group *list_group);
 void	init_list(t_list_group *list_group);
@@ -46,4 +56,5 @@ void	exec_s(t_num_list_node *stack);
 void	exec_rr(t_num_list_node *stack);
 void	exec_p(t_num_list_node *from, t_num_list_node *to);
 void	exec_instruction(t_list_group *list_group);
+void	conditional_branch_by_instr1(t_num_list_node *a, t_num_list_node *b, char *instr);
 #endif

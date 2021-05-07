@@ -10,19 +10,21 @@ COMMON_DIR := ../common
 COMMON_LIB := $(COMMON_DIR)/libcommon.a
 
 SRCS_PS := ./main.c \
-			./quick_sort.c \
-			./sort_over5.c \
-			./exit_ps.c \
-			./instr_optimazation.c \
 			./debug.c \
 			./exec_instr.c \
+			./exit_ps.c \
 			./init_info.c \
+			./instr_optimization.c \
+			./option_v.c \
+			./print_ans.c \
+			./quick_sort.c \
 			./set_pair_info.c \
 			./sort_less6.c \
 			./sort_only_3_node1.c \
 			./sort_only_3_node2.c \
+			./sort_over5.c \
 			./utils.c \
-			./print_ans.c \
+			./utils2.c \
 
 OBJCS_PS := $(SRCS_PS:%.c=%.o)
 

@@ -1,28 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_info.c                                        :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/05 22:47:10 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 22:32:59 by jnakahod         ###   ########.fr       */
+/*   Created: 2021/05/07 22:07:20 by jnakahod          #+#    #+#             */
+/*   Updated: 2021/05/08 00:12:21 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-void	pivot_init(t_info *info, t_list_group *list_group)
+int	count_digits(int n)
 {
-	info->p_head = make_new_pivot(list_group, info, 0);
-	info->p_head->prev = info->p_head;
-	info->p_head->next = info->p_head;
+	int				digits;
+	unsigned int	tmp;
+
+	if (n < 0)
+		tmp = n * -1;
+	else
+		tmp = n;
+	digits = 1;
+	while (tmp >= 10)
+	{
+		tmp /= 10;
+		digits++;
+	}
+	if (n < 0)
+		digits++;
+	return (digits);
 }
 
-void	init_info(t_list_group *list_group, t_info *info)
+void	free_only_instr_node(t_instr_list_node **node)
 {
-	info->a_size = info->all_size;
-	info->b_size = 0;
-	info->want = 0;
-	pivot_init(info, list_group);
+	if (*node)
+	{
+		if ((*node)->instr)
+		{
+			free((*node)->instr);
+			(*node)->instr = NULL;
+		}
+		free(*node);
+		*node = NULL;
+	}
 }

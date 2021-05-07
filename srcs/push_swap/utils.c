@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 12:10:43 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 13:18:05 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 22:29:13 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,13 @@ void	min_move_top(t_num_list_node *stack, int min, t_info *info, t_list_group *l
 	}
 }
 
-void	pb_all_node(t_list_group *list_group, t_info *info)
+void	pa_all_node(t_list_group *list_group, t_info *info)
 {
 	t_num_list_node *tmp;
 	tmp = list_group->stack_b->next;
 	while (tmp != list_group->stack_b)
 	{
 		tmp = tmp->next;
-		exec_p_and_add_instr_node(list_group->stack_b, list_group->stack_a, "pa", list_group, info);
+		exec_p_and_add_instr_node(list_group->stack_b, list_group->stack_a, list_group, info);
 	}
 }

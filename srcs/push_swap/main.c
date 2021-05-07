@@ -6,13 +6,14 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:51:25 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 13:26:38 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 00:39:20 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-void	get_num_from_arg(int ac, char **av, t_list_group *list_group, t_info *info)
+void	get_num_from_arg(int ac, char **av,
+	t_list_group *list_group, t_info *info)
 {
 	int	i;
 	int	value;
@@ -58,7 +59,6 @@ int	main(int ac, char **av)
 
 	init_list(&list_group);
 	i = 1;
-	// check option
 	if (ac == 1)
 		ft_exit(&list_group);
 	get_num_from_arg(ac, av, &list_group, &info);
@@ -71,7 +71,7 @@ int	main(int ac, char **av)
 	else
 		sort_over5(&list_group, &info);
 	instr_optimization(&list_group);
-	// option_v(&list_group, &info);
+	option_v(&list_group, &info);
 	print_ans(&list_group);
 	ft_info_free(&info);
 	ft_exit(&list_group);
