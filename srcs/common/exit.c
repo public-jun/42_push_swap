@@ -6,16 +6,15 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 15:59:18 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/05 17:45:27 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 17:48:03 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <common.h>
 
-
-t_num_list_node *free_one_node(t_num_list_node *node)
+t_num_list_node	*free_one_node(t_num_list_node *node)
 {
-	t_num_list_node *tmp_prev;
+	t_num_list_node	*tmp_prev;
 
 	tmp_prev = node->prev;
 	node->next->prev = tmp_prev;
@@ -27,7 +26,7 @@ t_num_list_node *free_one_node(t_num_list_node *node)
 
 t_instr_list_node	*free_one_instr_node(t_instr_list_node *node)
 {
-	t_instr_list_node *tmp_prev;
+	t_instr_list_node	*tmp_prev;
 
 	tmp_prev = node->prev;
 	node->next->prev = tmp_prev;
@@ -44,14 +43,6 @@ void	ft_exit(t_list_group *list_group)
 	t_num_list_node		*tmp;
 	t_instr_list_node	*tmp_instr;
 
-	// t_num_list_node *p = list_group->stack_a;
-	// printf("\n---result-----\n");
-	// while (p->next != list_group->stack_a)
-	// {
-	// 	printf("%d\n", p->next->num);
-	// 	p = p->next;
-	// }
-	// printf("stack_a num	: %d\n", p->next->num);
 	tmp = list_group->stack_a->next;
 	while (tmp != list_group->stack_a)
 		tmp = free_one_node(tmp);

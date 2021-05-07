@@ -6,17 +6,17 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:15:57 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/05 17:45:04 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 16:14:07 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <common.h>
 
-t_num_list_node *make_new_ele(t_list_group *list_group, int value)
+t_num_list_node	*make_new_ele(t_list_group *list_group, int value)
 {
-	t_num_list_node *res;
+	t_num_list_node	*res;
 
-	res = (t_num_list_node*)malloc(sizeof(t_num_list_node));
+	res = (t_num_list_node *)malloc(sizeof(t_num_list_node));
 	if (!res)
 		ft_put_error_and_exit(list_group);
 	res->num = value;
@@ -40,7 +40,6 @@ int	check_duplicate_value(int value, t_num_list_node *node)
 	return (0);
 }
 
-//末尾の node を探す。重複がないかチェック
 t_num_list_node	*get_tail_node(int value, t_num_list_node *stack_a)
 {
 	t_num_list_node	*tmp;

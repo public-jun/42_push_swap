@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 13:29:24 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 11:20:03 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 17:51:36 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	count_num_size(char **dst)
 	return (res);
 }
 
-int			ft_is_all_num(char *num)
+int	ft_is_all_num(char *num)
 {
 	int		len;
 	int		i;
@@ -32,7 +32,7 @@ int			ft_is_all_num(char *num)
 	if (len > 1 && num[i] == '0')
 		return (-1);
 	i = 0;
-	if(num[i] == '-')
+	if (num[i] == '-')
 		i++;
 	while (ft_isdigit(num[i]))
 		i++;
