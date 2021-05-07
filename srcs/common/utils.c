@@ -6,11 +6,21 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 13:29:24 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/05 17:45:46 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 11:20:03 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <common.h>
+
+int	count_num_size(char **dst)
+{
+	int	res;
+
+	res = 0;
+	while (dst[res])
+		res++;
+	return (res);
+}
 
 int			ft_is_all_num(char *num)
 {
