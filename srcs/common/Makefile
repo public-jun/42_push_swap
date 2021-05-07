@@ -2,9 +2,10 @@ NAME := libcommon.a
 
 SRCS := add_node.c \
 		add_instr_node.c \
-		common.c \
+		branch_by_instr.c \
 		exit.c \
 		init_list.c \
+		instructions.c \
 		utils.c
 
 OBJCS := $(SRCS:%.c=%.o)
