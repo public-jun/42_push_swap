@@ -6,14 +6,42 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 21:38:58 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 11:50:47 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 14:22:19 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/checker.h"
 
+void	get_num2(char **av, t_list_group *list_group)
+{
+	char	**split_av;
+	int		size;
+	int		i;
+	int		value;
 
-void	get_num(int ac, char **av, t_list_group *list_group)
+	i = 0;
+	split_av = ft_split(av[1], ' ');
+	if (!split_av)
+		ft_put_error_and_exit(list_group);
+	size = count_num_size(split_av);
+	if (size > 1)
+	{
+		while (i < size)
+		{
+			if (ft_is_all_num(split_av[i]) == -1)
+			{
+				ft_free_all(split_av);
+				ft_put_error_and_exit(list_group);
+			}
+			value = get_valid_num(split_av[i], list_group);
+			add_node_to_stack(value, list_group);
+			i++;
+		}
+	}
+	ft_free_all(split_av);
+}
+
+void	get_num1(int ac, char **av, t_list_group *list_group)
 {
 	char	**split_av;
 	int		size;
@@ -24,27 +52,7 @@ void	get_num(int ac, char **av, t_list_group *list_group)
 	size = ac - 1;
 	i = 0;
 	if (ac == 2)
-	{
-		split_av = ft_split(av[1], ' ');
-		if (!split_av)
-			ft_put_error_and_exit(list_group);
-		size = count_num_size(split_av);
-		if (size > 1)
-		{
-			while (i < size)
-			{
-				if (ft_is_all_num(split_av[i]) == -1)
-				{
-					ft_free_all(split_av);
-					ft_put_error_and_exit(list_group);
-				}
-				value = get_valid_num(split_av[i], list_group);
-				add_node_to_stack(value, list_group);
-				i++;
-			}
-			ft_free_all(split_av);
-		}
-	}
+		get_num2(av, list_group);
 	else
 	{
 		while (i < size)
@@ -65,13 +73,9 @@ int	main(int ac, char **av)
 	i = 1;
 	if (ac == 1)
 		ft_exit(&list_group);
-	get_num(ac, av, &list_group);
-	//標準入力で命令を受け取る
+	get_num1(ac, av, &list_group);
 	read_instruction_stdin(&list_group);
-
-	//受け取った命令を実行する
 	exec_instruction(&list_group);
-
 	check_list_order(&list_group);
 	return (0);
 }

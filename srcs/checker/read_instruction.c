@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 18:29:44 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/04/24 17:58:12 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 15:30:43 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 
 int	check_valid_instruction(char *line)
 {
-	if ((ft_strncmp(line, "sa", 3)) && (ft_strncmp(line, "sb", 3)) && (ft_strncmp(line, "ss", 3)) && (ft_strncmp(line, "pa", 3)) && (ft_strncmp(line, "pb", 3)) && (ft_strncmp(line, "ra", 3)) && (ft_strncmp(line, "rb", 3)) && (ft_strncmp(line, "rr", 3)) && (ft_strncmp(line, "rra", 4)) && (ft_strncmp(line, "rrb", 4)) && (ft_strncmp(line, "rrr", 4)))
+	if ((ft_strncmp(line, "sa", 3))
+		&& (ft_strncmp(line, "sb", 3))
+		&& (ft_strncmp(line, "ss", 3))
+		&& (ft_strncmp(line, "pa", 3))
+		&& (ft_strncmp(line, "pb", 3))
+		&& (ft_strncmp(line, "ra", 3))
+		&& (ft_strncmp(line, "rb", 3))
+		&& (ft_strncmp(line, "rr", 3))
+		&& (ft_strncmp(line, "rra", 4))
+		&& (ft_strncmp(line, "rrb", 4))
+		&& (ft_strncmp(line, "rrr", 4)))
 		return (-1);
 	return (0);
 }
-
 
 void	read_instruction_stdin(t_list_group *list_group)
 {

@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 14:37:56 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 11:34:47 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/07 14:05:05 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	is_stack_b_no_node(t_list_group *list_group)
 		return ;
 	ft_put_KO_and_exit(list_group);
 }
-
 
 void	check_list_order(t_list_group *list_group)
 {
