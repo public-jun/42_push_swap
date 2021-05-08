@@ -6,15 +6,16 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 22:58:45 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 12:33:38 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 15:28:40 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-void	add_value_to_pair(t_info *info, int value, int i, t_list_group *list_group)
+void	add_value_to_pair(t_info *info, int value, int i,
+	t_list_group *list_group)
 {
-	int j;
+	int	j;
 
 	if (i > 0)
 	{
@@ -22,12 +23,7 @@ void	add_value_to_pair(t_info *info, int value, int i, t_list_group *list_group)
 		while (j < i)
 		{
 			if (value == info->n[j].value)
-			{
-				// printf("dup value = %d\n", value);
-				// printf("i = %d\n", i);
-				// printf("j = %d\n", j);
 				ft_put_error_and_exit(list_group);
-			}
 			j++;
 		}
 	}

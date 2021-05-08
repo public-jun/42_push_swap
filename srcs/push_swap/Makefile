@@ -22,7 +22,10 @@ SRCS_PS := ./main.c \
 			./sort_less6.c \
 			./sort_only_3_node1.c \
 			./sort_only_3_node2.c \
-			./sort_over5.c \
+			./sort_over5_first_part.c \
+			./sort_over5_half_stack.c \
+			./sort_over5_latter_part.c \
+			./sort_over5_utils.c \
 			./utils.c \
 			./utils2.c \
 
