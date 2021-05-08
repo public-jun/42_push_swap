@@ -42,6 +42,10 @@ fclean: clean
 	$(MAKE) -C $(COMMON_DIR) fclean
 	$(RM) $(NAME)
 
+testch:
+	$(MAKE) -C $(LIBFT_DIR)
+	$(CC) -g $(CFLAGS) $(SRCS_CH) $(COMMON_DIR)/*.c $(LIBFT_LIB) -I $(INCLUDE) -o $(NAME)
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re testch

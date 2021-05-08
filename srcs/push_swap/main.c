@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:51:25 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/08 21:15:22 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:52:56 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	get_num_from_arg2(char **av,
 		}
 	}
 	ft_free_all(info->split_av);
+	info->split_av = NULL;
 	if (info->all_size < 2)
 		ft_exit_ps(list_group, info);
 }

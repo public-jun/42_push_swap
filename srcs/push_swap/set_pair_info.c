@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 22:58:45 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/08 15:28:40 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:30:16 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	add_value_to_pair(t_info *info, int value, int i,
 		while (j < i)
 		{
 			if (value == info->n[j].value)
-				ft_put_error_and_exit(list_group);
+				ft_put_error_and_ps_exit(list_group, info);
 			j++;
 		}
 	}
