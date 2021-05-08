@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 22:02:22 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/08 15:18:26 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 18:20:49 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ typedef struct s_num_list_node
 
 typedef struct s_instruction_list_node
 {
-	char						*instr;
+	char							*instr;
 	struct s_instruction_list_node	*prev;
 	struct s_instruction_list_node	*next;
 }	t_instr_list_node;
 
 typedef struct s_list_group
 {
-	t_num_list_node	*stack_a;
-	t_num_list_node	*stack_a_test;
-	t_num_list_node	*stack_b;
-	t_num_list_node	*stack_b_test;
-	t_instr_list_node *head_instr;
+	t_num_list_node		*stack_a;
+	t_num_list_node		*stack_a_test;
+	t_num_list_node		*stack_b;
+	t_num_list_node		*stack_b_test;
+	t_instr_list_node	*head_instr;
 }	t_list_group;
 
 typedef struct s_pair
@@ -46,7 +46,7 @@ typedef struct s_pair
 
 typedef struct s_pivot
 {
-	int		p_value;
+	int				p_value;
 	struct s_pivot	*next;
 	struct s_pivot	*prev;
 }	t_pivot;
