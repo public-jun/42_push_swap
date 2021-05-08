@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:51:25 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/08 15:23:53 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:15:22 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,24 @@
 void	get_num_from_arg2(char **av,
 	t_list_group *list_group, t_info *info)
 {
-	char	**split_av;
 	int		i;
 	int		value;
 
 	i = 0;
-	split_av = ft_split(av[1], ' ');
-	if (!split_av)
+	info->split_av = ft_split(av[1], ' ');
+	if (!info->split_av)
 		ft_put_error_and_ps_exit(list_group, info);
-	info->all_size = count_num_size(split_av);
+	info->all_size = count_num_size(info->split_av);
 	if (info->all_size > 1)
 	{
 		while (i < info->all_size)
 		{
-			if (ft_is_all_num(split_av[i]) == -1)
-				ft_free_all(split_av);
-			value = get_valid_num_ps(split_av[i], list_group, info);
+			value = get_valid_num_ps(info->split_av[i], list_group, info);
 			add_value_to_pair(info, value, i, list_group);
 			i++;
 		}
 	}
-	ft_free_all(split_av);
+	ft_free_all(info->split_av);
 	if (info->all_size < 2)
 		ft_exit_ps(list_group, info);
 }

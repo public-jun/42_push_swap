@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:12:51 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/05 17:45:35 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 19:38:52 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	init_instr_list(t_list_group *list_group)
 
 void	init_list(t_list_group *list_group)
 {
+	list_group->stack_a_test = NULL ;
+	list_group->stack_b_test = NULL;
 	list_group->stack_a = make_new_ele(list_group, -1);
 	list_group->stack_b = make_new_ele(list_group, -1);
 	list_group->stack_a->prev = list_group->stack_a;

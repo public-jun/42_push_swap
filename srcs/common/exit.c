@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 15:59:18 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 17:48:03 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 20:23:44 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,35 @@ t_instr_list_node	*free_one_instr_node(t_instr_list_node *node)
 	return (tmp_prev->next);
 }
 
-void	ft_exit(t_list_group *list_group)
+void	free_stack(t_num_list_node *stack)
 {
 	t_num_list_node		*tmp;
+
+	if (!stack)
+		return ;
+	tmp = stack->next;
+	while (tmp != stack)
+		tmp = free_one_node(tmp);
+	free(stack);
+}
+
+void	ft_exit(t_list_group *list_group)
+{
+	// t_num_list_node		*tmp;
 	t_instr_list_node	*tmp_instr;
 
-	tmp = list_group->stack_a->next;
-	while (tmp != list_group->stack_a)
-		tmp = free_one_node(tmp);
-	free(list_group->stack_a);
-	tmp = list_group->stack_b->next;
-	while (tmp != list_group->stack_b)
-		tmp = free_one_node(tmp);
-	free(list_group->stack_b);
+	free_stack(list_group->stack_a);
+	free_stack(list_group->stack_b);
+	free_stack(list_group->stack_a_test);
+	free_stack(list_group->stack_b_test);
+	// tmp = list_group->stack_a->next;
+	// while (tmp != list_group->stack_a)
+	// 	tmp = free_one_node(tmp);
+	// free(list_group->stack_a);
+	// tmp = list_group->stack_b->next;
+	// while (tmp != list_group->stack_b)
+	// 	tmp = free_one_node(tmp);
+	// free(list_group->stack_b);
 	tmp_instr = list_group->head_instr->next;
 	while (tmp_instr != list_group->head_instr)
 		tmp_instr = free_one_instr_node(tmp_instr);

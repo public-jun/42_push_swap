@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 12:10:43 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/08 18:11:27 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 19:34:46 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	no_sort(t_list_group *list_group, t_info *info)
 			return ;
 		i++;
 	}
-	ft_exit(list_group);
+	ft_exit_ps(list_group, info);
 }
 
 int	find_min_value(t_num_list_node *head)

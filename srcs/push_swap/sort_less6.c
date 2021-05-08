@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 23:05:25 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/08 17:09:27 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 19:35:12 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	sort_less6(t_info *info, t_list_group *list_group)
 
 	stack_a = list_group->stack_a;
 	if (info->all_size == 1)
-		ft_exit(list_group);
+		ft_exit_ps(list_group, info);
 	else if (info->all_size == 2)
 	{
 		if (stack_a->next->num > stack_a->next->next->num)
