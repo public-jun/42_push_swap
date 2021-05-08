@@ -7,6 +7,9 @@ CFLAGS := -Wall -Wextra -Werror
 LIBFT_DIR := ./libft
 LIBFT_LIB := $(LIBFT_DIR)/libft.a
 
+COMMON_DIR := ./srcs/common
+COMMON_LIB := $(COMMON_DIR)/libcommon.a
+
 CH_DIR := ./srcs/checker
 PS_DIR := ./srcs/push_swap
 
@@ -42,6 +45,14 @@ testch:
 
 testps:
 	$(MAKE) -C $(LIBFT_DIR)
-	$(CC) -g $(CFLAGS) $(PS_DIR)/*.c $(COMMON_DIR)/*.c $(LIBFT_LIB) -I $(INCLUDE) -o $(NAME_PS)
+	$(CC) -g $(CFLAGS) $(PS_DIR)/*.c $(COMMON_DIR)/*.c $(LIBFT_LIB) -I $(INCLUDE) -o $(PUSH_SWAP)
+
+test:
+	$(MAKE) -C $(CH_DIR) testch
+	cp $(CH_DIR)/$(CHECKER) ./
+	$(MAKE) -C $(PS_DIR) testps
+	cp $(PS_DIR)/$(PUSH_SWAP) ./
+
+
 
 .PHONY: all clean flcean re testch testps

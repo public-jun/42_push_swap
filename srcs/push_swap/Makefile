@@ -65,4 +65,4 @@ testps:
 	$(MAKE) -C $(LIBFT_DIR)
 	$(CC) -g $(CFLAGS) $(SRCS_PS) $(COMMON_DIR)/*.c $(LIBFT_LIB) -I $(INCLUDE) -o $(NAME)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re testps
