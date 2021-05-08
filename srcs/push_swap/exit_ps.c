@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 16:19:46 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 22:31:55 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 12:41:13 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,23 @@ void	ft_info_free(t_info *info)
 {
 	t_pivot	*tmp;
 
+	if (!info)
+		return ;
 	tmp = info->p_head->next;
 	while (tmp != info->p_head)
 		tmp = free_one_pivot_node(tmp);
 	free(info->p_head);
-	if (info->split_av)
-		ft_free_all(info->split_av);
 }
 
 void	ft_put_error_and_ps_exit(t_list_group *list_group, t_info *info)
 {
 	write(2, "Error\n", 6);
+	ft_info_free(info);
+	ft_exit(list_group);
+}
+
+void	ft_exit_ps(t_list_group *list_group, t_info *info)
+{
 	ft_info_free(info);
 	ft_exit(list_group);
 }

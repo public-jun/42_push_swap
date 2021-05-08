@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 17:05:16 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/05 22:28:22 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 15:28:05 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	pair_swap(t_pair *a, t_pair *b)
 {
-	int tmp_value;
-	int tmp_id;
+	int	tmp_value;
+	int	tmp_id;
 
 	tmp_value = a->value;
 	tmp_id = a->id;

@@ -6,20 +6,19 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 16:31:47 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 12:00:19 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 15:27:24 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-void	print_ans(t_list_group *list_group)
+void	print_ans(t_list_group *list_group, t_info *info)
 {
-	t_instr_list_node *tmp;
-	int instr_count;
+	t_instr_list_node	*tmp;
+	int					instr_count;
 
 	tmp = list_group->head_instr->next;
 	instr_count = 0;
-	// printf("\n---instr_list-----\n");
 	while (tmp->next != list_group->head_instr)
 	{
 		ft_putendl_fd(tmp->instr, 1);
@@ -27,5 +26,11 @@ void	print_ans(t_list_group *list_group)
 		instr_count++;
 	}
 	ft_putendl_fd(tmp->instr, 1);
-	// printf("instr_count : %d\n", instr_count);
+	if (info->c_flag)
+	{
+		instr_count++;
+		ft_putstr_fd("instr_count : ", 1);
+		ft_putnbr_fd(instr_count, 1);
+		ft_putchar_fd('\n', 1);
+	}
 }

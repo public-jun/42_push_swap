@@ -6,13 +6,14 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 22:37:43 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/05 22:39:44 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 15:30:19 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-void	sort_only_three(t_num_list_node *stack, t_list_group *list_group, t_info *info)
+void	sort_only_three(t_num_list_node *stack, t_list_group *list_group,
+	t_info *info)
 {
 	int	first;
 	int	second;

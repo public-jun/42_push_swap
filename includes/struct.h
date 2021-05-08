@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 22:02:22 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/06 19:17:09 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 15:18:26 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,15 @@ typedef struct s_info
 	t_pair	n[ARGLIMIT + 10];
 	int		def[ARGLIMIT + 10];
 	t_pivot	*p_head;
-	char	**split_av;
 	int		all_size;
 	int		a_size;
 	int		b_size;
 	int		a_min;
 	int		b_min;
 	int		want;
+	int		v_flag;
+	int		a_flag;
+	int		c_flag;
 }	t_info;
 
 #endif

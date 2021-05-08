@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 15:53:35 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/08 00:12:39 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 17:21:40 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	sort_over5(t_list_group *list_group, t_info *info);
 t_pivot *free_one_pivot_node(t_pivot *node);
 void	ft_info_free(t_info *info);
 void	ft_put_error_and_ps_exit(t_list_group *list_group, t_info *info);
-void	add_front_pivot_list(int pivot, t_list_group *list_group, t_info *info);
 void	instr_optimization(t_list_group *list_group);
+int	get_valid_num_ps(char *value, t_list_group *list_group, t_info *info);
 /*
 ** exec_instr
 */
@@ -58,10 +58,18 @@ void	sort_only_three_case5(t_num_list_node *stack, t_list_group *list_group, t_i
 void	sort_less6(t_info *info, t_list_group *list_group);
 t_pivot	*make_new_pivot(t_list_group *list_group, t_info *info, int pivot);
 /*
+** sort_over5
+*/
+void	halve_set(t_info *info, t_list_group *list_group);
+void	add_front_pivot_list(int pivot, t_list_group *list_group, t_info *info);
+void	serch_want(t_list_group *list_group, t_info *info);
+int		count_pivot_node(t_info *info);
+void	sort_over5_latter(t_list_group *list_group, t_info *info);
+/*
 ** utils
 */
 int		find_min_value(t_num_list_node *head);
-void	min_move_top(t_num_list_node *stack, int min, t_info *info, t_list_group *list_group, int size);
+void	min_move_top(t_num_list_node *stack, int min, t_info *info, t_list_group *list_group);
 void	pa_all_node(t_list_group *list_group, t_info *info);
 int		count_size(t_num_list_node *stack);
 void	no_sort(t_list_group *list_group, t_info *info);
@@ -70,7 +78,7 @@ void	free_only_instr_node(t_instr_list_node **node);
 /*
 ** print_ans
 */
-void	print_ans(t_list_group *list_group);
+void	print_ans(t_list_group *list_group, t_info *info);
 /*
 ** option -v
 */
@@ -79,9 +87,15 @@ void	copy_stack_a(t_list_group *group);
 /*
 ** debug
 */
+void	exe_option(t_list_group *list_group, t_info *info);
 void	print_space_num(int s_size, int num, int left_flag);
 void	print_sort_result1(t_list_group *list_group, t_info *info);
 void	print_one_node(int id, int num);
+/*
+** exit_ps
+*/
+void	ft_exit_ps(t_list_group *list_group, t_info *info);
+
 
 
 

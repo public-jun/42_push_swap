@@ -6,13 +6,14 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 00:36:07 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 21:58:27 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 17:13:30 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <common.h>
 
-void	conditional_branch_by_instr2(t_num_list_node *a, t_num_list_node *b, char *instr)
+void	conditional_branch_by_instr2(t_num_list_node *a,
+	t_num_list_node *b, char *instr)
 {
 	if (!(ft_strncmp(instr, "ra", 3)))
 		exec_r(a);
@@ -34,7 +35,8 @@ void	conditional_branch_by_instr2(t_num_list_node *a, t_num_list_node *b, char *
 	}
 }
 
-void	conditional_branch_by_instr1(t_num_list_node *a, t_num_list_node *b, char *instr)
+void	conditional_branch_by_instr1(t_num_list_node *a,
+	t_num_list_node *b, char *instr)
 {
 	if (!(ft_strncmp(instr, "sa", 3)))
 		exec_s(a);
@@ -60,7 +62,8 @@ void	exec_instruction(t_list_group *list_group)
 	tmp_instr = list_group->head_instr;
 	while (tmp_instr->next != list_group->head_instr)
 	{
-		conditional_branch_by_instr1(list_group->stack_a, list_group->stack_b, tmp_instr->next->instr);
+		conditional_branch_by_instr1(list_group->stack_a,
+			list_group->stack_b, tmp_instr->next->instr);
 		tmp_instr = tmp_instr->next;
 	}
 }

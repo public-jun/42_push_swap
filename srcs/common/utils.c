@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 13:29:24 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 17:51:36 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 13:58:08 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_is_all_num(char *num)
 	return (-1);
 }
 
-static int	check_int_overflow(int sign, const char *str)
+int	check_int_overflow(int sign, const char *str)
 {
 	int		digit;
 
@@ -59,7 +59,7 @@ static int	check_int_overflow(int sign, const char *str)
 	return (1);
 }
 
-int	ft_atoi_ps(const char *str, t_list_group *list_group)
+int	ft_atoi_ch(const char *str, t_list_group *list_group)
 {
 	long long		number;
 	int				sign;

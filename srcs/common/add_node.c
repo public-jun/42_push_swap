@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:15:57 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 16:14:07 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/05/08 12:55:28 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	get_valid_num(char *value, t_list_group *list_group)
 
 	if (ft_is_all_num(value) == -1)
 		ft_put_error_and_exit(list_group);
-	int_value = ft_atoi_ps(value, list_group);
+	int_value = ft_atoi_ch(value, list_group);
 	return (int_value);
 }
 
