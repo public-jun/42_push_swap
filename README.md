@@ -41,7 +41,6 @@ $ OK
 //-v option is visual mode
 $ ./push_swap -v 44 33 5 1 0 -1  99 //randam number
 ```
-https://user-images.githubusercontent.com/60804160/117637492-cf9be300-b1bc-11eb-8b05-a5f9c3c0f914.mov
 
 ```c
 //-a option is after sort
