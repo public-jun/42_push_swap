@@ -44,7 +44,7 @@ $ ./push_swap -v 44 33 5 1 0 -1  99 //randam number
 $ ./push_swap -a 1111 4444444 33323 554 5654 //randam number
 ```
 
-```
+```c
 //-c option is command counts
 $ ./push_swap -c 1111 4444444 33323 554 5654 //randam number
 ```
