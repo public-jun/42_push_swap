@@ -1,5 +1,6 @@
 CHECKER := checker
 PUSH_SWAP := push_swap
+NAME = $(CHECKER) $(PUSH_SWAP)
 
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror
@@ -17,7 +18,7 @@ INCLUDE := ./includes
 
 RM := rm -f
 
-all: $(CHECKER) $(PUSH_SWAP)
+all: $(NAME)
 
 $(CHECKER):
 	$(MAKE) -C $(CH_DIR)
