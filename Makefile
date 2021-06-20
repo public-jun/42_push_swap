@@ -1,6 +1,6 @@
-CHECKER := checker
+NAME =  $(PUSH_SWAP)
 PUSH_SWAP := push_swap
-NAME = $(CHECKER) $(PUSH_SWAP)
+CHECKER := checker
 
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror
@@ -38,6 +38,8 @@ fclean:
 	$(MAKE) -C $(PS_DIR) fclean
 	$(RM) $(CHECKER) $(PUSH_SWAP)
 
+bonus: $(CHECKER)
+
 re: fclean all
 
 testch:
@@ -56,4 +58,4 @@ test:
 
 
 
-.PHONY: all clean flcean re testch testps
+.PHONY: all clean flcean bonus  re testch testps

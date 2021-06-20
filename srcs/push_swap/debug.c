@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 22:25:45 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/08 14:55:55 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/06/20 21:26:55 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	print_sort_result1(t_list_group *list_group, t_info *info)
 	tmp_a = list_group->stack_a->next;
 	tmp_b = list_group->stack_b->next;
 	ft_putstr_fd(RED, 1);
-	printf("\n\n-----after_sort------\n");
+	ft_putstr_fd("\n\n-----after_sort------\n", 1);
 	ft_putstr_fd(DEFCOLOR, 1);
 	ft_putstr_fd("|      stack_a      |      stack_b      |\n", 1);
 	print_sort_result2(tmp_a, tmp_b, list_group, info);
