@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:51:25 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/06/21 12:58:08 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/06/21 16:46:48 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,11 @@ void	check_option(int ac, char **av, t_list_group *list_group, t_info *info)
 
 int	main(int ac, char **av)
 {
-	int				i;
 	t_list_group	list_group;
 	t_info			info;
 
 	init_list(&list_group);
 	init_info(&list_group, &info);
-	i = 1;
 	if (ac == 1)
 		ft_exit(&list_group);
 	check_option(ac, av, &list_group, &info);
