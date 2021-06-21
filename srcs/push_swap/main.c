@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:51:25 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/06/18 12:45:27 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/06/21 12:58:08 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	get_num_from_arg2(char **av,
 			i++;
 		}
 	}
+	else if (info->all_size == 1 && ft_is_all_num(info->split_av[0]) == -1)
+		ft_put_error_and_ps_exit(list_group, info);
 	ft_free_all(info->split_av);
 	info->split_av = NULL;
 	if (info->all_size < 2)
@@ -63,8 +65,11 @@ void	get_num_from_arg1(int ac, char **av,
 	info->a_size = info->all_size;
 }
 
+/*
 void	check_option(int ac, char **av, t_list_group *list_group, t_info *info)
 {
+	(void) av;
+	(void) list_group;
 	if (av[1][0] == '-' && ft_is_all_num(av[1]) == -1)
 	{
 		if (ft_strchr(av[1], 'v'))
@@ -77,8 +82,18 @@ void	check_option(int ac, char **av, t_list_group *list_group, t_info *info)
 			ft_put_error_and_ps_exit(list_group, info);
 		info->all_size = ac - 2;
 	}
+	else if (ft_is_all_num(av[1]) == -1)
+		ft_put_error_and_ps_exit(list_group, info);
 	else
 		info->all_size = ac - 1;
+}
+*/
+
+void	check_option(int ac, char **av, t_list_group *list_group, t_info *info)
+{
+	(void) av;
+	(void) list_group;
+	info->all_size = ac - 1;
 }
 
 int	main(int ac, char **av)

@@ -6,39 +6,48 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 21:38:58 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 14:22:19 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/06/21 11:37:00 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/checker.h"
 
+static void	add_node(int size, char **split_av, t_list_group *list_group)
+{
+	int	exit_flag;
+	int	i;
+	int	value;
+
+	exit_flag = 0;
+	i = 0;
+	if (size == 1 && ft_is_all_num(split_av[0]) == -1)
+		exit_flag = 1;
+	while (i < size && size > 1)
+	{
+		if (ft_is_all_num(split_av[i]) == -1)
+		{
+			exit_flag = 1;
+			break ;
+		}
+		value = get_valid_num(split_av[i], list_group);
+		add_node_to_stack(value, list_group);
+		i++;
+	}
+	ft_free_all(split_av);
+	if (exit_flag)
+		ft_put_error_and_exit(list_group);
+}
+
 void	get_num2(char **av, t_list_group *list_group)
 {
 	char	**split_av;
 	int		size;
-	int		i;
-	int		value;
 
-	i = 0;
 	split_av = ft_split(av[1], ' ');
 	if (!split_av)
 		ft_put_error_and_exit(list_group);
 	size = count_num_size(split_av);
-	if (size > 1)
-	{
-		while (i < size)
-		{
-			if (ft_is_all_num(split_av[i]) == -1)
-			{
-				ft_free_all(split_av);
-				ft_put_error_and_exit(list_group);
-			}
-			value = get_valid_num(split_av[i], list_group);
-			add_node_to_stack(value, list_group);
-			i++;
-		}
-	}
-	ft_free_all(split_av);
+	add_node(size, split_av, list_group);
 }
 
 void	get_num1(int ac, char **av, t_list_group *list_group)
