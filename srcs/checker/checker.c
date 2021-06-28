@@ -6,11 +6,31 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 21:38:58 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/07 14:22:19 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/06/28 21:20:48 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/checker.h"
+
+static int	check_valid_num(char *str)
+{
+	long long		number;
+	int				sign;
+	int				i;
+
+	number = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	if (check_int_overflow(sign, str + i) == -1)
+		return (-1);
+	return (0);
+}
 
 void	get_num2(char **av, t_list_group *list_group)
 {
@@ -24,19 +44,17 @@ void	get_num2(char **av, t_list_group *list_group)
 	if (!split_av)
 		ft_put_error_and_exit(list_group);
 	size = count_num_size(split_av);
-	if (size > 1)
+	while (i < size)
 	{
-		while (i < size)
+		if (ft_is_all_num(split_av[i]) == -1
+			|| check_valid_num(split_av[i]) == -1)
 		{
-			if (ft_is_all_num(split_av[i]) == -1)
-			{
-				ft_free_all(split_av);
-				ft_put_error_and_exit(list_group);
-			}
-			value = get_valid_num(split_av[i], list_group);
-			add_node_to_stack(value, list_group);
-			i++;
+			ft_free_all(split_av);
+			ft_put_error_and_exit(list_group);
 		}
+		value = get_valid_num(split_av[i], list_group);
+		add_node_to_stack(value, list_group);
+		i++;
 	}
 	ft_free_all(split_av);
 }

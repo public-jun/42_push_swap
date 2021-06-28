@@ -56,6 +56,10 @@ test:
 	$(MAKE) -C $(PS_DIR) testps
 	cp $(PS_DIR)/$(PUSH_SWAP) ./
 
+valgrindpush_swap: testps
+	valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --error-exitcode=666 ./$(PUSH_SWAP) 
 
+valgrindchecker: testch
+	valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --error-exitcode=666 ./$(CHECKER)
 
 .PHONY: all clean flcean bonus  re testch testps
