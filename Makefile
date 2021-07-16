@@ -16,7 +16,7 @@ PS_DIR := ./srcs/push_swap
 
 INCLUDE := ./includes
 
-RM := rm -f
+RM := rm -rf
 
 all: $(NAME)
 
@@ -36,7 +36,7 @@ clean:
 fclean:
 	$(MAKE) -C $(CH_DIR) fclean
 	$(MAKE) -C $(PS_DIR) fclean
-	$(RM) $(CHECKER) $(PUSH_SWAP)
+	$(RM) $(CHECKER) $(CHECKER).dSYM $(PUSH_SWAP) $(PUSH_SWAP).dSYM
 
 bonus: $(CHECKER)
 
@@ -57,7 +57,7 @@ test:
 	cp $(PS_DIR)/$(PUSH_SWAP) ./
 
 valgrindpush_swap: testps
-	valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --error-exitcode=666 ./$(PUSH_SWAP)
+	valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --error-exitcode=666 ./$(PUSH_SWAP) $ARGS
 
 valgrindchecker: testch
 	valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --error-exitcode=666 ./$(CHECKER)

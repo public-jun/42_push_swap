@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:51:25 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/06/28 21:04:19 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/07/16 12:50:20 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	get_num_from_arg2(char **av,
 	if (!info->split_av)
 		ft_put_error_and_ps_exit(list_group, info);
 	info->all_size = count_num_size(info->split_av);
+	if (info->all_size > ARGLIMIT)
+		ft_put_error_and_ps_exit(list_group, info);
 	while (i < info->all_size)
 	{
 		value = get_valid_num_ps(info->split_av[i], list_group, info);
@@ -50,6 +52,8 @@ void	get_num_from_arg1(int ac, char **av,
 		get_num_from_arg2(av, list_group, info);
 	else
 	{
+		if (info->all_size > ARGLIMIT)
+			ft_put_error_and_ps_exit(list_group, info);
 		while (i < info->all_size)
 		{
 			value = get_valid_num_ps(av[i + f], list_group, info);
