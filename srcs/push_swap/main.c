@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:51:25 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/07/16 12:50:20 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/07/19 17:03:23 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	get_num_from_arg2(char **av,
 	t_list_group *list_group, t_info *info)
 {
-	int		i;
-	int		value;
+	int	i;
+	int	value;
 
 	i = 0;
 	info->split_av = ft_split(av[1], ' ');
@@ -67,7 +67,7 @@ void	get_num_from_arg1(int ac, char **av,
 /*
 void	check_option(int ac, char **av, t_list_group *list_group, t_info *info)
 {
-	if (av[1][0] == '-' && ft_is_all_num(av[1]) == -1)
+	if (av[1][0] == '-' && ft_atoi_ps(av[1]) == NULL)
 	{
 		if (ft_strchr(av[1], 'v'))
 			info->v_flag = 1;
@@ -86,8 +86,8 @@ void	check_option(int ac, char **av, t_list_group *list_group, t_info *info)
 
 void	check_option(int ac, char **av, t_list_group *list_group, t_info *info)
 {
-	(void) av;
-	(void) list_group;
+	(void)av;
+	(void)list_group;
 	info->all_size = ac - 1;
 }
 

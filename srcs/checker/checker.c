@@ -6,30 +6,20 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 21:38:58 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/06/28 21:20:48 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/07/19 16:30:02 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/checker.h"
 
-static int	check_valid_num(char *str)
+static int	get_value_and_free(int **p_value)
 {
-	long long		number;
-	int				sign;
-	int				i;
+	int	res;
 
-	number = 0;
-	sign = 1;
-	i = 0;
-	while (str[i] == ' ')
-		i++;
-	if (str[i] == '-')
-		sign = -1;
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	if (check_int_overflow(sign, str + i) == -1)
-		return (-1);
-	return (0);
+	res = **p_value;
+	free(*p_value);
+	*p_value = NULL;
+	return (res);
 }
 
 void	get_num2(char **av, t_list_group *list_group)
@@ -38,23 +28,25 @@ void	get_num2(char **av, t_list_group *list_group)
 	int		size;
 	int		i;
 	int		value;
+	int		*int_value;
 
-	i = 0;
+	i = -1;
 	split_av = ft_split(av[1], ' ');
 	if (!split_av)
 		ft_put_error_and_exit(list_group);
 	size = count_num_size(split_av);
-	while (i < size)
+	if (size > ARGLIMIT)
+		ft_put_error_and_exit(list_group);
+	while (++i < size)
 	{
-		if (ft_is_all_num(split_av[i]) == -1
-			|| check_valid_num(split_av[i]) == -1)
+		int_value = ft_atoi_ps(split_av[i]);
+		if (!int_value)
 		{
 			ft_free_all(split_av);
 			ft_put_error_and_exit(list_group);
 		}
-		value = get_valid_num(split_av[i], list_group);
+		value = get_value_and_free(&int_value);
 		add_node_to_stack(value, list_group);
-		i++;
 	}
 	ft_free_all(split_av);
 }
@@ -65,6 +57,7 @@ void	get_num1(int ac, char **av, t_list_group *list_group)
 	int		size;
 	int		i;
 	int		value;
+	int		*int_value;
 
 	split_av = NULL;
 	size = ac - 1;
@@ -73,9 +66,14 @@ void	get_num1(int ac, char **av, t_list_group *list_group)
 		get_num2(av, list_group);
 	else
 	{
+		if (size > ARGLIMIT)
+			ft_put_error_and_exit(list_group);
 		while (i < size)
 		{
-			value = get_valid_num(av[i + 1], list_group);
+			int_value = ft_atoi_ps(av[i + 1]);
+			if (!int_value)
+				ft_put_error_and_exit(list_group);
+			value = get_value_and_free(&int_value);
 			add_node_to_stack(value, list_group);
 			i++;
 		}
