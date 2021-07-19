@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:15:57 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/08 12:55:28 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/07/19 15:57:34 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@ t_num_list_node	*make_new_ele(t_list_group *list_group, int value)
 		ft_put_error_and_exit(list_group);
 	res->num = value;
 	return (res);
-}
-
-int	get_valid_num(char *value, t_list_group *list_group)
-{
-	int		int_value;
-
-	if (ft_is_all_num(value) == -1)
-		ft_put_error_and_exit(list_group);
-	int_value = ft_atoi_ch(value, list_group);
-	return (int_value);
 }
 
 int	check_duplicate_value(int value, t_num_list_node *node)

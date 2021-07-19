@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 22:07:20 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/08 18:03:15 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/07/19 14:16:21 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,38 +61,59 @@ void	free_only_instr_node(t_instr_list_node **node)
 	}
 }
 
-int	ft_atoi_ps(const char *str, t_list_group *list_group, t_info *info)
+/*
+int	*ft_atoi_ps(const char *str, t_list_group *list_group, t_info *info)
 {
-	long long		number;
-	int				sign;
-	int				i;
+	long long	number;
+	int 		*res;
+	int 		sign;
+	int			i;
 
+	(void) list_group;
+	(void) info;
 	number = 0;
 	sign = 1;
 	i = 0;
-	while (str[i] == ' ')
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	if (str[i] == '-')
-		sign = -1;
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	if (check_int_overflow(sign, str + i) == -1)
-		ft_put_error_and_ps_exit(list_group, info);
-	while (ft_isdigit(str[i]))
+	while (str[i] == '+' || str[i] == '-')
 	{
-		number = number * 10;
-		number += str[i] - '0';
+		if (str[i] == '-')
+			sign *= -1;
 		i++;
 	}
-	return (number * sign);
+	if (check_int_overflow(sign, str + i) == -1)
+		return (NULL);
+	if (!str[i])
+		return (NULL);
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]))
+		{
+			number = number * 10;
+			number += str[i] - '0';
+			i++;
+		}
+		else
+			return (NULL);
+	}
+	res = (int *)malloc(sizeof(int) * 1);
+	if (!res)
+		return (NULL);
+	*res = (int)number * sign;
+	return (res);
 }
+*/
 
 int	get_valid_num_ps(char *value, t_list_group *list_group, t_info *info)
 {
-	int		int_value;
+	int	*int_value;
+	int	res;
 
-	if (ft_is_all_num(value) == -1)
+	int_value = ft_atoi_ps(value);
+	if (!int_value)
 		ft_put_error_and_ps_exit(list_group, info);
-	int_value = ft_atoi_ps(value, list_group, info);
-	return (int_value);
+	res = *int_value;
+	free(int_value);
+	return (res);
 }

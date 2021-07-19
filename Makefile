@@ -57,9 +57,9 @@ test:
 	cp $(PS_DIR)/$(PUSH_SWAP) ./
 
 valgrindpush_swap: testps
-	valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --error-exitcode=666 ./$(PUSH_SWAP) $ARGS
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --errors-for-leak-kinds=all --error-exitcode=666 ./$(PUSH_SWAP) 5 0 -1 2 6 10 3
 
 valgrindchecker: testch
 	valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --error-exitcode=666 ./$(CHECKER)
 
-.PHONY: all clean flcean bonus  re testch testps
+.PHONY: all clean flcean bonus  re testch testps valgrindpush_swap valgrindchecker
