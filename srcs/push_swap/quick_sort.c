@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 17:05:16 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/08 20:35:50 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/07/20 12:04:11 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	partition_id(t_pair n[], int left, int right)
 	pivot = left;
 	while (i < j)
 	{
-		while (n[++i].id < n[pivot].id)
+		while (n[++i].id < n[pivot].id && i < ARGLIMIT + 10)
 			;
 		while (n[pivot].id < n[--j].id)
 			;

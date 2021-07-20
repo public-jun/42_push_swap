@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 21:38:58 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/07/19 16:30:02 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/07/20 11:06:47 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	get_num2(char **av, t_list_group *list_group)
 	if (!split_av)
 		ft_put_error_and_exit(list_group);
 	size = count_num_size(split_av);
-	if (size > ARGLIMIT)
+	if (size > ARGLIMIT || !size)
 		ft_put_error_and_exit(list_group);
 	while (++i < size)
 	{
