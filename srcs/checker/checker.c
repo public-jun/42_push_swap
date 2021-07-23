@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 21:38:58 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/07/20 11:06:47 by jnakahod         ###   ########.fr       */
+/*   Updated: 2021/07/23 22:14:05 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,13 @@ static int	get_value_and_free(int **p_value)
 	return (res);
 }
 
-void	get_num2(char **av, t_list_group *list_group)
+static void	make_stack(int size, char **split_av, t_list_group *list_group)
 {
-	char	**split_av;
-	int		size;
 	int		i;
-	int		value;
 	int		*int_value;
+	int		value;
 
 	i = -1;
-	split_av = ft_split(av[1], ' ');
-	if (!split_av)
-		ft_put_error_and_exit(list_group);
-	size = count_num_size(split_av);
-	if (size > ARGLIMIT || !size)
-		ft_put_error_and_exit(list_group);
 	while (++i < size)
 	{
 		int_value = ft_atoi_ps(split_av[i]);
@@ -48,6 +40,23 @@ void	get_num2(char **av, t_list_group *list_group)
 		value = get_value_and_free(&int_value);
 		add_node_to_stack(value, list_group);
 	}
+}
+
+void	get_num2(char **av, t_list_group *list_group)
+{
+	char	**split_av;
+	int		size;
+
+	split_av = ft_split(av[1], ' ');
+	if (!split_av)
+		ft_put_error_and_exit(list_group);
+	size = count_num_size(split_av);
+	if (size > ARGLIMIT || !size)
+	{
+		ft_free_all(split_av);
+		ft_put_error_and_exit(list_group);
+	}
+	make_stack(size, split_av, list_group);
 	ft_free_all(split_av);
 }
 

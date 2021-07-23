@@ -60,6 +60,6 @@ valgrindpush_swap: testps
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --errors-for-leak-kinds=all --error-exitcode=666 ./$(PUSH_SWAP) 1 0 -1
 
 valgrindchecker: testch
-	valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --error-exitcode=666 ./$(CHECKER)
+	valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --error-exitcode=666 ./$(CHECKER) ""
 
 .PHONY: all clean flcean bonus  re testch testps valgrindpush_swap valgrindchecker
