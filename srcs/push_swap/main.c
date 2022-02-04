@@ -6,7 +6,7 @@
 /*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:51:25 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/07/20 11:07:12 by jnakahod         ###   ########.fr       */
+/*   Updated: 2022/02/04 23:26:23 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	get_num_from_arg1(int ac, char **av,
 	info->a_size = info->all_size;
 }
 
-/*
 void	check_option(int ac, char **av, t_list_group *list_group, t_info *info)
 {
 	if (av[1][0] == '-' && ft_atoi_ps(av[1]) == NULL)
@@ -82,14 +81,15 @@ void	check_option(int ac, char **av, t_list_group *list_group, t_info *info)
 	else
 		info->all_size = ac - 1;
 }
-*/
 
+/*
 void	check_option(int ac, char **av, t_list_group *list_group, t_info *info)
 {
 	(void)av;
 	(void)list_group;
 	info->all_size = ac - 1;
 }
+*/
 
 int	main(int ac, char **av)
 {
